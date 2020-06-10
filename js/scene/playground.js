@@ -77,6 +77,7 @@ class Playground extends Phaser.Scene {
         this.enemyBlockCollider();
 
         this.bulletEnemyCollider();
+        this.bulletBlockCollider();
 
 
     }

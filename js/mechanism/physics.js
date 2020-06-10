@@ -62,3 +62,15 @@ Playground.prototype.enemyBlockCollider = function(){
         }
     });
 }
+
+Playground.prototype.bulletBlockCollider = function(){
+    this.physics.add.collider(gameStatus.bullets, gameStatus.blocks,function(bullet,block){
+        if (bullet.trail) {
+            if (bullet.line != undefined) {
+                bullet.line.destroy();
+            }
+        }
+        bullet.destroy();
+        console.log("bullet collide")
+    });
+}

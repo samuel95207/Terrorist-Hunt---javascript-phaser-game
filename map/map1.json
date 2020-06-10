@@ -31,5 +31,5 @@
     ],
     "spawn_point": {"x":6,"y":4},
     "weapon_spawn_point":[{"x":5, "y":17, "type":"assaultRifle"},{"x":20, "y":18, "type":"assaultRifle"},{"x":25, "y":6, "type":"assaultRifle"}],
-    "enemy_spawn_point":[{"x":19, "y":15, "type":"ordinaryEnemy","weapon":"assaultRifle"}]
+    "enemy_spawn_point":[{"x":19, "y":15, "type":"ordinaryEnemy","weapon":"assaultRifle"},{"x":22, "y":8, "type":"ordinaryEnemy","weapon":"assaultRifle"}]
 }

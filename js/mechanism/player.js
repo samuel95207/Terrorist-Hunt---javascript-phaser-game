@@ -62,4 +62,18 @@ Playground.prototype.carryItemProcess = function(){
             weapon.cooldownCounter += 1; 
         }
     }, this)
+    gameStatus.enemies.children.each(function(entity){
+        let weapon = entity.carryItem
+        if(weapon != null){
+            let weaponConfig = gameConfig.weapon[weapon.texture.key]
+            if(entity.flipX === true){
+                weapon.x = entity.x - weaponConfig.handle.x
+            }else{
+                weapon.x = entity.x + weaponConfig.handle.x
+            }
+            weapon.y = entity.y + weaponConfig.handle.y
+            weapon.flipX = entity.flipX   
+            weapon.cooldownCounter += 1; 
+        }
+    }, this)
 }

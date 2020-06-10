@@ -6,7 +6,7 @@ gameConfig.width = 1320;
 //physics configs
 gameConfig.playerAcceleration = 70;
 gameConfig.playerFriction = 30;
-gameConfig.playerMaxSpeed = 500;
+gameConfig.playerMaxSpeed = 600;
 gameConfig.jumpVelocity = 1100;
 gameConfig.gravity = 3000;
 gameConfig.enemyFriction = 30;
@@ -52,6 +52,8 @@ gameConfig.weapon = {
 gameConfig.enemy = {
     ordinaryEnemy: {
         acceleration: 300,
-        maxSpeed: 500
+        maxSpeed: 500,
+        sight: 400,
+        weapon: "assaultRifle"
     }
 }
