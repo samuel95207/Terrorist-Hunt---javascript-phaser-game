@@ -4,27 +4,7 @@ class Playground extends Phaser.Scene {
     }
 
     preload(){
-        //preload background
-        this.load.image('bgLayer1', 'images/background/layer1.png');
-        this.load.image('bgLayer2', 'images/background/layer2.png');
-        this.load.image('bgLayer3', 'images/background/layer3.png');
 
-        //preload weapons 
-        this.load.image('bullet', 'images/weapons/bullet.png')  
-        this.load.image('assaultRifle', 'images/weapons/assaultrifle.png')
-
-        this.load.image('ordinaryEnemy', 'images/enemies/ordinaryEnemy.png')
-
-        //TODO: find blocks
-        //load blocks
-        for(let i = 0;i <= 230;i++){
-            let num_string = i.toString();
-            let filename = "isometric_pixel_flat_" + "0".repeat(4-num_string.length) + num_string;
-            this.load.image(filename, 'images/blocks/'+filename+".png");
-        }
-        
-        //TODO: find animation spritesheet
-        this.load.spritesheet('codey','https://s3.amazonaws.com/codecademy-content/courses/learn-phaser/Cave+Crisis/codey_sprite.png',{ frameWidth: 72, frameHeight: 90 })
     }
 
 

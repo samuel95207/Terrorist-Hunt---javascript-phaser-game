@@ -1,0 +1,72 @@
+class Load extends Phaser.Scene {
+    constructor() {
+        super('Load');
+    }
+    preload() {
+        var style = { font: "bold 32px Arial", fill: "#fff"};
+        var title = this.add.text(gameConfig.width/2 - 40, gameConfig.height/2, "Loading", style);
+
+        this.loadBackground();
+        this.loadBlocks();
+        this.loadWeapons();
+        this.loadEnemies();
+        this.loadPlayer();
+
+
+        let loadingBar = this.add.graphics({
+            fillStyle: {
+                color: 0xffffff //white
+            }
+        })
+
+        this.load.on("progress", (percent) => {
+            loadingBar.fillRect(0, this.game.renderer.height * 0.8, this.game.renderer.width * percent, 50);
+            console.log(percent);
+        })
+
+        this.load.on("complete", () => {
+            //this.scene.start(CST.SCENES.MENU, "hello from LoadScene");
+        });
+
+        this.load.on("load", (file) => {
+            console.log(file.src)
+        })
+    }
+    create() {
+        this.scene.start('Menu');
+    }
+
+    loadBackground() {
+        //preload background
+        this.load.image('bgLayer1', 'images/background/layer1.png');
+        this.load.image('bgLayer2', 'images/background/layer2.png');
+        this.load.image('bgLayer3', 'images/background/layer3.png');
+    }
+
+    loadBlocks() {
+        //load blocks
+        for (let i = 0; i <= 230; i++) {
+            let num_string = i.toString();
+            let filename = "isometric_pixel_flat_" + "0".repeat(4 - num_string.length) + num_string;
+            this.load.image(filename, 'images/blocks/' + filename + ".png");
+        }
+    }
+
+    loadWeapons() {
+        //preload weapons 
+        this.load.image('bullet', 'images/weapons/bullet.png')
+        this.load.image('assaultRifle', 'images/weapons/assaultrifle.png')
+
+
+    }
+
+    loadEnemies() {
+        this.load.image('ordinaryEnemy', 'images/enemies/ordinaryEnemy.png')
+    }
+
+    loadPlayer() {
+        //TODO: find animation spritesheet
+        this.load.spritesheet('codey', 'https://s3.amazonaws.com/codecademy-content/courses/learn-phaser/Cave+Crisis/codey_sprite.png', { frameWidth: 72, frameHeight: 90 })
+    }
+
+}

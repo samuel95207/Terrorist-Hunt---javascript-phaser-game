@@ -1,7 +1,7 @@
 const config = {
     width: gameConfig.width,
     height: gameConfig.height,
-    backgroundColor:0xc10AFFF,
+    backgroundColor:'black',
     physics: {
         default: 'arcade',
         arcade: {
