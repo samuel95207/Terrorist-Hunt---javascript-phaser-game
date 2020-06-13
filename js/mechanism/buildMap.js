@@ -31,8 +31,7 @@ Playground.prototype.buildMap = function(json_file){
 
     //generate player
     let player_coord = this.blockToCoord_LU(map.spawn_point.x,map.spawn_point.y);
-    gameStatus.player = gameStatus.players.create(player_coord.x, player_coord.y, 'codey');
-    gameStatus.player.body.maxVelocity.x = gameConfig.playerMaxSpeed
+    gameStatus.player = this.createPlayer(player_coord.x, player_coord.y, 'codey');
     
 
     //generate weapons

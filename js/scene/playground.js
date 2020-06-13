@@ -33,16 +33,17 @@ class Playground extends Phaser.Scene {
         this.createBackground();
 
         gameStatus.blocks = this.physics.add.staticGroup();
-        gameStatus.weapons = this.physics.add.group();
-        gameStatus.bullets = this.physics.add.group();
-        gameStatus.players = this.physics.add.group();
-        gameStatus.enemies = this.physics.add.group();
+        gameStatus.weapons = this.physics.add.group({runChildUpdate: true});
+        gameStatus.bullets = this.physics.add.group({runChildUpdate: true});
+        gameStatus.players = this.physics.add.group({runChildUpdate: true});
+        gameStatus.enemies = this.physics.add.group({runChildUpdate: true});
 
         this.buildMap("map/map1.json")
 
         this.createAnimations();
 
         //camera setting
+        gameStatus.cameras = this.cameras;
         this.cameras.main.setBounds(0, 0, gameStatus.mapSize.width, gameStatus.mapSize.height);
         this.physics.world.setBounds(0, 0, gameStatus.mapSize.width, gameStatus.mapSize.height + gameStatus.player.height);
     
@@ -78,9 +79,11 @@ class Playground extends Phaser.Scene {
 
         this.bulletEnemyCollider();
         this.bulletBlockCollider();
+        this.bulletPlayerCollider();
 
 
     }
+
 
     update(){
         //player movement
@@ -92,14 +95,32 @@ class Playground extends Phaser.Scene {
 
         this.enemyMovement();
 
+
+
+
+        // if(gameStatus.player.y > 500){
+        //     gameStatus.player.die();
+        //     gameStatus.player.body.position.x = gameStatus.player.spawnPoint.x;
+        //     gameStatus.player.body.position.y = gameStatus.player.spawnPoint.y;
+        // }
+        console.log(gameStatus.player.body.position)
+
     }
 
     //create Backgound
     createBackground() {
         gameConfig.background = {}
-        gameConfig.background.layer1 = this.add.image(0, 0, 'bgLayer1').setOrigin(0,0);
-        gameConfig.background.layer2 = this.add.image(0, 0, 'bgLayer2').setOrigin(0,0);
-        gameConfig.background.layer3 = this.add.image(0, 0, 'bgLayer3').setOrigin(0,0);
+        // gameConfig.background.layer1 = this.add.image(0, 0, 'bgLayer1').setOrigin(0,0);
+        // gameConfig.background.layer2 = this.add.image(0, 0, 'bgLayer2').setOrigin(0,0);
+        // gameConfig.background.layer3 = this.add.image(0, 0, 'bgLayer3').setOrigin(0,0);
+        gameConfig.background.layer1 = this.add.tileSprite(0, 0,10000,1000, 'bgLayer1').setOrigin(0,0);
+        gameConfig.background.layer2 = this.add.tileSprite(0, 0,10000,1000, 'bgLayer2').setOrigin(0,0);
+        gameConfig.background.layer3 = this.add.tileSprite(0, 0,10000,1000, 'bgLayer3').setOrigin(0,0);
+
+        gameConfig.background.layer1.setScrollFactor(0.3);
+        gameConfig.background.layer2.setScrollFactor(0.5);
+        gameConfig.background.layer3.setScrollFactor(0.9);
+
     }
 
     //create Animation

@@ -3,11 +3,14 @@ const gameConfig = {}
 gameConfig.height = 720;
 gameConfig.width = 1320;
 
-//physics configs
+//player configs
 gameConfig.playerAcceleration = 70;
 gameConfig.playerFriction = 30;
 gameConfig.playerMaxSpeed = 600;
 gameConfig.jumpVelocity = 1100;
+gameConfig.playerLives = 10;
+
+//physics configs
 gameConfig.gravity = 3000;
 gameConfig.enemyFriction = 30;
 
@@ -31,7 +34,7 @@ gameConfig.weapon = {
         handle: {x: 10,y: 15},
         barrel: {x: [10,100],y: 10},
         friction: 20,
-        recoil: 2000,
+        recoil: 300,
         range: 700,
         automatic: true,
         cooldownTime: 4,

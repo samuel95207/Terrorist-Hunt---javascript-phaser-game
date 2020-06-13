@@ -8,12 +8,21 @@ Playground.prototype.createEnemy = function (x, y, texture) {
     enemy.carryItem = Playground.prototype.createWeapon(enemy.body.x, enemy.body.y, enemyConfig.weapon)
     enemy.carryItem.owner = enemy;
 
-    console.log(enemy.carryItem)
+    // console.log(enemy.carryItem)
+
     enemy.die = function () {
-        if (!enemy.is_dead) {
-            enemy.is_dead = true;
+        enemy.is_dead = true;
+
+
+        if(enemy.carryItem){
+            let item = enemy.carryItem;
+            item.body.setAllowGravity(true);
+            enemy.carryItem = null;
+            item.owner = null;
         }
+        
     }
+
     enemy.moveRight = function () {
         if (this.is_dead) {
             return
@@ -40,26 +49,7 @@ Playground.prototype.createEnemy = function (x, y, texture) {
 
 }
 
-Playground.prototype.bulletEnemyCollider = function () {
-    this.physics.add.collider(gameStatus.bullets, gameStatus.enemies, function (bullet, enemy) {
-        if (bullet.line != undefined) {
-            bullet.line.destroy();
-        }
-        bullet.destroy();
-        if (!enemy.is_dead) {
-            enemy.body.velocity.y = -700
-            if (bullet.flipX) {
-                enemy.setOrigin(0, 0.7)
-                enemy.angle -= 90;
-            } else {
-                enemy.setOrigin(0, 0.3)
-                enemy.angle += 90;
-            }
-            enemy.die();
-        }
-    });
 
-}
 
 
 Playground.prototype.enemyMovement = function () {
@@ -72,15 +62,15 @@ Playground.prototype.enemyMovement = function () {
             let rand = Math.floor(Math.random() * 100);
             if (rand < 10) {
                 enemy.flipX = !enemy.flipX;
-                console.log("flip")
+                // console.log("flip")
             }
             else if (rand < 80) {
                 if (enemy.flipX) {
                     enemy.moveLeft();
-                    console.log("moveLeft")
+                    // console.log("moveLeft")
                 } else {
                     enemy.moveRight();
-                    console.log("moveRight")
+                    // console.log("moveRight")
                 }
             }
             // console.log(enemy)
@@ -91,9 +81,9 @@ Playground.prototype.enemyMovement = function () {
         }
 
         if (!enemy.body.blocked.down) {
-            console.log("down");
+            // console.log("down");
             enemy.body.velocity.y = 500;
-            console.log(enemy.body.y)
+            // console.log(enemy.body.y)
             if (enemy.flipX) {
                 enemy.body.velocity.x = 500;
             } else {
@@ -105,8 +95,8 @@ Playground.prototype.enemyMovement = function () {
         gameStatus.players.children.each(function (player) {
             let rand = Math.floor(Math.random() * 100);
             if (enemy.body.y - player.body.y < 20 && enemy.body.y - player.body.y > -20) {
-                console.log(player.body.x - enemy.body.x);
-                if (rand < 20) {
+                // console.log(player.body.x - enemy.body.x);
+                if (rand < 10) {
                     let distance = enemy.body.x - player.body.x;
                     if ((enemy.flipX && distance > 0 && distance < enemy.sight) || (!enemy.flipX && -distance > 0 && -distance < enemy.sight)) {
                         enemy.fire();

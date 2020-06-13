@@ -10,7 +10,7 @@ const config = {
           debug: false
         }
     },
-    scene: [Playground]
+    scene: [Load, Menu, Playground]
 }
 
 

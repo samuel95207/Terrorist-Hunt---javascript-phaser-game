@@ -1,18 +1,18 @@
-Playground.prototype.playerWeaponOverlap = function(){
+Playground.prototype.playerWeaponOverlap = function () {
     gameStatus.player.carryItem = null;
     gameStatus.player.dropCounter = 51;
-    this.physics.add.overlap( gameStatus.player,gameStatus.weapons, function(player,weapon){
-        if(gameStatus.cursors.pickup.isDown && gameStatus.player.dropCounter > 10) {
-            if(player.carryItem === null){
+    this.physics.add.overlap(gameStatus.player, gameStatus.weapons, function (player, weapon) {
+        if (gameStatus.cursors.pickup.isDown && gameStatus.player.dropCounter > 10) {
+            if (player.carryItem === null) {
                 player.carryItem = weapon
                 weapon.owner = player
 
                 weapon.body.setAllowGravity(false)
 
                 let weaponConfig = gameConfig.weapon[weapon.texture.key]
-                if(player.flipX === true){
+                if (player.flipX === true) {
                     weapon.x = player.x - weaponConfig.handle.x
-                }else{
+                } else {
                     weapon.x = player.x + weaponConfig.handle.x
                 }
                 weapon.y = player.y + weaponConfig.handle.y
@@ -24,53 +24,106 @@ Playground.prototype.playerWeaponOverlap = function(){
 }
 
 
-Playground.prototype.playerBlocksCollider = function(){
-    this.physics.add.collider(gameStatus.player, gameStatus.blocks,function(player,block){
+Playground.prototype.playerBlocksCollider = function () {
+    this.physics.add.collider(gameStatus.player, gameStatus.blocks, function (player, block) {
         //TODO block friction
-        if(player.body.velocity.x > 0){
+        if (player.body.velocity.x > 0) {
             player.body.velocity.x -= gameConfig.playerFriction;
-        }else if(player.body.velocity.x < 0){
+        } else if (player.body.velocity.x < 0) {
             player.body.velocity.x += gameConfig.playerFriction;
+        }
+        if (player.body.velocity.x < 30 && player.body.velocity.x > -30) {
+            player.body.velocity.x = 0;
         }
     });
 }
 
 
-Playground.prototype.weaponBlockCollider = function(){
-    this.physics.add.collider(gameStatus.weapons, gameStatus.blocks, function(weapon,block){
+Playground.prototype.weaponBlockCollider = function () {
+    this.physics.add.collider(gameStatus.weapons, gameStatus.blocks, function (weapon, block) {
         let weaponConfig = gameConfig.weapon[weapon.texture.key]
         //TODO 
-        if(weapon.body.velocity.x > 0){
+        if (weapon.body.velocity.x > 0) {
             weapon.body.velocity.x -= weaponConfig.friction;
-        }else if(weapon.body.velocity.x < 0){
+        } else if (weapon.body.velocity.x < 0) {
             weapon.body.velocity.x += weaponConfig.friction;
         }
-        if(weapon.body.velocity.x < 50 && weapon.body.velocity.x > -50){
+        if (weapon.body.velocity.x < 50 && weapon.body.velocity.x > -50) {
             weapon.body.velocity.x = 0;
         }
     });
 }
 
 
-Playground.prototype.enemyBlockCollider = function(){
-    this.physics.add.collider(gameStatus.enemies, gameStatus.blocks,function(enemy,block){
+Playground.prototype.enemyBlockCollider = function () {
+    this.physics.add.collider(gameStatus.enemies, gameStatus.blocks, function (enemy, block) {
         //TODO block friction
-        if(enemy.body.velocity.x > 0){
+        if (enemy.body.velocity.x > 0) {
             enemy.body.velocity.x -= gameConfig.enemyFriction;
-        }else if(enemy.body.velocity.x < 0){
+        } else if (enemy.body.velocity.x < 0) {
             enemy.body.velocity.x += gameConfig.enemyFriction;
+        }
+
+        if (enemy.body.velocity.x < 30 && enemy.body.velocity.x > -30) {
+            enemy.body.velocity.x = 0;
+        }
+
+        if (enemy.body.blocked.left || enemy.body.blocked.right) {
+            enemy.body.velocity.x = 0;
         }
     });
 }
 
-Playground.prototype.bulletBlockCollider = function(){
-    this.physics.add.collider(gameStatus.bullets, gameStatus.blocks,function(bullet,block){
+Playground.prototype.bulletBlockCollider = function () {
+    this.physics.add.collider(gameStatus.bullets, gameStatus.blocks, function (bullet, block) {
         if (bullet.trail) {
             if (bullet.line != undefined) {
                 bullet.line.destroy();
             }
         }
         bullet.destroy();
-        console.log("bullet collide")
+        // console.log("bullet collide")
     });
 }
+
+
+
+Playground.prototype.bulletEnemyCollider = function () {
+    this.physics.add.collider(gameStatus.bullets, gameStatus.enemies, function (bullet, enemy) {
+        if (bullet.line != undefined) {
+            bullet.line.destroy();
+        }
+        bullet.destroy();
+        if (!enemy.is_dead) {
+            enemy.is_dead = true;
+            enemy.body.velocity.y = -700
+            if (bullet.flipX) {
+                enemy.setOrigin(0, 0.7)
+                enemy.angle -= 90;
+            } else {
+                enemy.setOrigin(0, 0.3)
+                enemy.angle += 90;
+            }
+            enemy.die();
+        }
+
+        if (enemy.body.blocked.left || enemy.body.blocked.right) {
+            enemy.body.velocity.x = 0;
+        }
+
+    });
+
+}
+
+
+Playground.prototype.bulletPlayerCollider = function () {
+    this.physics.add.collider(gameStatus.bullets, gameStatus.players, function (bullet, player) {
+        if (bullet.line != undefined) {
+            bullet.line.destroy();
+        }
+        bullet.destroy();
+        player.die();
+    });
+
+}
+
