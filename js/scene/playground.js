@@ -26,9 +26,10 @@ class Playground extends Phaser.Scene {
     gameStatus.cameras = this.cameras;
     this.cameras.main.setBounds(0, 0, gameStatus.mapSize.width, gameStatus.mapSize.height);
     this.physics.world.setBounds(0, 0, gameStatus.mapSize.width, gameStatus.mapSize.height + gameStatus.player.height);
-    gameStatus.cameras.main.setZoom(1);
     this.cameras.main.startFollow(gameStatus.player, true, 0.5, 0.5)
     gameStatus.player.setCollideWorldBounds(true);
+
+    this.startScene();
 
 
 
@@ -66,7 +67,7 @@ class Playground extends Phaser.Scene {
 
 
 
-    this.startScene();
+    
 
 
   }
@@ -86,31 +87,10 @@ class Playground extends Phaser.Scene {
       this.scene.restart();
     }
 
+    this.stageClearCheck();
+
     
-    var win = true;
-    if(gameStatus.enemies.getLength() == 0){
-      win = false;
-    }
-    gameStatus.enemies.children.each(function (enemy) {
-      if (!enemy.is_dead) {
-        win = false;
-      }
-    })
-    if (win && !gameStatus.winFlag) {
-      gameStatus.winFlag = true;
-      console.log('win');
-      gameStatus.map = gameStatus.next_level;
-      gameStatus.cameras.main.zoomTo(2,);
 
-      setTimeout(() => {
-        gameStatus.cameras.main.fadeOut(1000,0,0,0);
-      }, 4000);
-      
-      setTimeout(() => {
-        this.scene.restart();
-      }, 5000);
-
-    }
 
   }
 
@@ -168,14 +148,41 @@ class Playground extends Phaser.Scene {
   }
 
   startScene(){
-    this.cameras.main.fade(0,0,0,0);
-    
-    var style = { font: "bold 32px Arial", fill: "#fff"};
-    var title = this.add.text(gameConfig.width/2 - 40, gameConfig.height/2, "Loading", style);
-    
+    gameStatus.cameras.main.fadeOut(50,0,0,0);
+    gameStatus.cameras.main.setZoom(2);
     setTimeout(() => {
-      gameStatus.cameras.main.fadeIn(1000,0,0,0);
-    }, 4000);
+      gameStatus.cameras.main.fadeIn(500,0,0,0);
+    }, 500);
+    setTimeout(() => {
+    gameStatus.cameras.main.zoomTo(1,500);
+    },500);
+  }
+
+  stageClearCheck(){
+    var win = true;
+    if(gameStatus.enemies.getLength() == 0){
+      win = false;
+    }
+    gameStatus.enemies.children.each(function (enemy) {
+      if (!enemy.is_dead) {
+        win = false;
+      }
+    })
+    if (win && !gameStatus.winFlag) {
+      gameStatus.winFlag = true;
+      console.log('win');
+      gameStatus.map = gameStatus.next_level;
+      gameStatus.cameras.main.zoomTo(2,1000);
+
+      setTimeout(() => {
+        gameStatus.cameras.main.fadeOut(1000,0,0,0);
+      }, 4000);
+      
+      setTimeout(() => {
+        this.scene.restart();
+      }, 5000);
+
+    }
   }
 
 }
