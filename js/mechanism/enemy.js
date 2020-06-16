@@ -4,6 +4,8 @@ Playground.prototype.createEnemy = function (x, y, texture) {
     enemy.is_dead = false;
     enemy.body.maxVelocity.x = enemyConfig.maxSpeed;
     enemy.sight = enemyConfig.sight;
+    enemy.fireProbability = enemyConfig.fireProbability;
+    enemy.fireDelay = enemyConfig.fireDelay;
 
     enemy.carryItem = Playground.prototype.createWeapon(enemy.body.x, enemy.body.y, enemyConfig.weapon)
     enemy.carryItem.owner = enemy;
@@ -14,13 +16,13 @@ Playground.prototype.createEnemy = function (x, y, texture) {
         enemy.is_dead = true;
 
 
-        if(enemy.carryItem){
+        if (enemy.carryItem) {
             let item = enemy.carryItem;
             item.body.setAllowGravity(true);
             enemy.carryItem = null;
             item.owner = null;
         }
-        
+
     }
 
     enemy.moveRight = function () {
@@ -93,13 +95,15 @@ Playground.prototype.enemyMovement = function () {
 
         //detect player
         gameStatus.players.children.each(function (player) {
-            let rand = Math.floor(Math.random() * 100);
+            let rand = Math.floor(Math.random());
             if (enemy.body.y - player.body.y < 20 && enemy.body.y - player.body.y > -20) {
                 // console.log(player.body.x - enemy.body.x);
-                if (rand < 10) {
+                if (rand < enemy.fireProbability) {
                     let distance = enemy.body.x - player.body.x;
                     if ((enemy.flipX && distance > 0 && distance < enemy.sight) || (!enemy.flipX && -distance > 0 && -distance < enemy.sight)) {
-                        enemy.fire();
+                        setTimeout(() => {
+                            enemy.fire();
+                        }, enemy.fireDelay);
                     }
                 }
             }

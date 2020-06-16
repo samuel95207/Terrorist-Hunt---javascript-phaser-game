@@ -67,7 +67,7 @@ class Playground extends Phaser.Scene {
 
 
 
-    
+
 
 
   }
@@ -89,7 +89,7 @@ class Playground extends Phaser.Scene {
 
     this.stageClearCheck();
 
-    
+
 
 
   }
@@ -147,20 +147,17 @@ class Playground extends Phaser.Scene {
     return { x: 40 * x, y: 40 * y }
   }
 
-  startScene(){
-    gameStatus.cameras.main.fadeOut(50,0,0,0);
+  startScene() {
     gameStatus.cameras.main.setZoom(2);
+    gameStatus.cameras.main.fadeIn(100, 0, 0, 0);
     setTimeout(() => {
-      gameStatus.cameras.main.fadeIn(500,0,0,0);
+      gameStatus.cameras.main.zoomTo(1, 500);
     }, 500);
-    setTimeout(() => {
-    gameStatus.cameras.main.zoomTo(1,500);
-    },500);
   }
 
-  stageClearCheck(){
+  stageClearCheck() {
     var win = true;
-    if(gameStatus.enemies.getLength() == 0){
+    if (gameStatus.enemies.getLength() == 0) {
       win = false;
     }
     gameStatus.enemies.children.each(function (enemy) {
@@ -172,12 +169,12 @@ class Playground extends Phaser.Scene {
       gameStatus.winFlag = true;
       console.log('win');
       gameStatus.map = gameStatus.next_level;
-      gameStatus.cameras.main.zoomTo(2,1000);
+      gameStatus.cameras.main.zoomTo(2, 1000);
 
       setTimeout(() => {
-        gameStatus.cameras.main.fadeOut(1000,0,0,0);
+        gameStatus.cameras.main.fadeOut(1000, 0, 0, 0);
       }, 4000);
-      
+
       setTimeout(() => {
         this.scene.restart();
       }, 5000);

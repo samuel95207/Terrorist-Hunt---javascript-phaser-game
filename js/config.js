@@ -59,6 +59,8 @@ gameConfig.enemy = {
         acceleration: 300,
         maxSpeed: 500,
         sight: 400,
+        fireProbability: 0.3,
+        fireDelay: 500,
         weapon: "assaultRifle"
     }
 }
