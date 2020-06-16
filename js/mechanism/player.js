@@ -8,6 +8,10 @@ Playground.prototype.createPlayer = function(x,y,texture){
     player.spawnPoint = {x:x,y:y};
 
     player.die = function(){
+        if(gameStatus.winFlag){
+            console.log('not die');
+            return;
+        }
         gameStatus.cameras.main.shake(240, .01, false);
         player.lives--;
         if(player.lives < 0){
@@ -24,6 +28,10 @@ Playground.prototype.createPlayer = function(x,y,texture){
 
     player.update = function(){
         if(player.y > gameStatus.mapSize.height-10){
+            if(gameStatus.winFlag){
+                console.log('not die');
+                return;
+            }
             player.die();
             player.x = player.spawnPoint.x;
             player.y = player.spawnPoint.y;

@@ -8,42 +8,18 @@ class Menu extends Phaser.Scene {
         this.createBackground();
 
 
-        var playButton = this.add.text(gameConfig.width / 2 - 150, gameConfig.height / 2, 'PLAY',
+        this.add.text(gameConfig.width / 2 - 150, gameConfig.height / 2, 'Press Space to Start',
             {
                 fontFamily: 'Arial',
-                fontSize: '120px',
+                fontSize: '30px',
                 fontStyle: 'bold',
-                color: 'blue',
-                stroke: 'yellow',
-                strokeThickness: 20,
-                shadow: {
-                    offsetX: 0,
-                    offsetY: 0,
-                    color: '#000',
-                    blur: 0,
-                    stroke: false,
-                    fill: false
-                },
+                color: 'white',
             });
 
-        playButton.setInteractive();
+        gameStatus.cameras = this.cameras;
 
-        playButton.on("pointerover", () => {
-            // hoverSprite.setVisible(true);
-            // hoverSprite.play("walk");
-            // hoverSprite.x = playButton.x - playButton.width;
-            // hoverSprite.y = playButton.y;
 
-        })
 
-        playButton.on("pointerout", () => {
-            // hoverSprite.setVisible(false);
-        })
-
-        playButton.on("pointerup", () => {
-            gameStatus.map = 'level1';
-            this.scene.start('Playground');
-        })
 
 
 
@@ -99,6 +75,14 @@ class Menu extends Phaser.Scene {
         // })
 
 
+    }
+
+    update(){
+        if(this.input.keyboard.addKey('SPACE').isDown){
+            gameStatus.cameras.main.fadeOut(1000, 0, 0, 0);
+            gameStatus.map = 'end';
+            this.scene.start('Playground');
+        }
     }
 
     createBackground() {

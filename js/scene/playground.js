@@ -29,7 +29,13 @@ class Playground extends Phaser.Scene {
     this.cameras.main.startFollow(gameStatus.player, true, 0.5, 0.5)
     gameStatus.player.setCollideWorldBounds(true);
 
-    this.startScene();
+
+    if (gameStatus.map == 'end') {
+      this.endgameScene();
+    } else {
+      this.startScene();
+    }
+
 
 
 
@@ -43,7 +49,8 @@ class Playground extends Phaser.Scene {
       down: this.input.keyboard.addKey(gameConfig.keyConfig.down),
       jump: this.input.keyboard.addKey(gameConfig.keyConfig.jump),
       pickup: this.input.keyboard.addKey(gameConfig.keyConfig.pickup),
-      fire: this.input.keyboard.addKey(gameConfig.keyConfig.fire)
+      fire: this.input.keyboard.addKey(gameConfig.keyConfig.fire),
+      space: this.input.keyboard.addKey('SPACE')
     }
 
 
@@ -74,6 +81,9 @@ class Playground extends Phaser.Scene {
 
 
   update() {
+    if (gameStatus.map == 'end') {
+      return;
+    }
     //player movement
     this.playerControl();
     this.dropItemControl();
@@ -149,10 +159,10 @@ class Playground extends Phaser.Scene {
 
   startScene() {
     gameStatus.cameras.main.setZoom(2);
-    gameStatus.cameras.main.fadeIn(100, 0, 0, 0);
+    gameStatus.cameras.main.fadeIn(500, 0, 0, 0);
     setTimeout(() => {
       gameStatus.cameras.main.zoomTo(1, 500);
-    }, 500);
+    }, 200);
   }
 
   stageClearCheck() {
@@ -175,11 +185,29 @@ class Playground extends Phaser.Scene {
         gameStatus.cameras.main.fadeOut(1000, 0, 0, 0);
       }, 4000);
 
+      if (!gameStatus.map) {
+        gameStatus.map = 'end';
+      }
       setTimeout(() => {
         this.scene.restart();
       }, 5000);
 
     }
+  }
+
+
+  endgameScene() {
+    gameStatus.cameras.main.setZoom(1);
+    gameStatus.cameras.main.fadeIn(300, 0, 0, 0);
+    setTimeout(() => {
+      gameStatus.cameras.main.zoomTo(1.5, 100);
+    }, 1000);
+    setTimeout(() => {
+      gameStatus.cameras.main.zoomTo(2, 100);
+    }, 3000);
+    setTimeout(() => {
+      gameStatus.cameras.main.zoomTo(2.5, 100);
+    }, 5000);
   }
 
 }
