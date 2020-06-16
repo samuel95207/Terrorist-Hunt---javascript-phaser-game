@@ -1,14 +1,16 @@
 const gameConfig = {}
 
-gameConfig.height = 720;
-gameConfig.width = 1320;
+gameConfig.height = window.innerHeight-120;
+gameConfig.width = window.innerWidth-120;
+
+console.log(gameConfig.width)
 
 //player configs
 gameConfig.playerAcceleration = 70;
 gameConfig.playerFriction = 30;
 gameConfig.playerMaxSpeed = 600;
 gameConfig.jumpVelocity = 1100;
-gameConfig.playerLives = 10;
+gameConfig.playerLives = 3;
 
 //physics configs
 gameConfig.gravity = 3000;

@@ -11,7 +11,7 @@ Playground.prototype.createPlayer = function(x,y,texture){
         gameStatus.cameras.main.shake(240, .01, false);
         player.lives--;
         if(player.lives < 0){
-            //TODO: gameover
+            
         }
 
         player.body.position.x = player.spawnPoint.x;

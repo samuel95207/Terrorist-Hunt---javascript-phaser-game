@@ -3,13 +3,49 @@ class Menu extends Phaser.Scene {
         super('Menu');
     }
 
-    create() { 
+    create() {
         //creating the menu screen
         this.createBackground();
 
-        // this.add.image(0, 0, CST.IMAGE.TITLE).setOrigin(0).setDepth(0);
 
-        // let playButton = this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2, CST.IMAGE.PLAY).setDepth(1);
+        var playButton = this.add.text(gameConfig.width / 2 - 150, gameConfig.height / 2, 'PLAY',
+            {
+                fontFamily: 'Arial',
+                fontSize: '120px',
+                fontStyle: 'bold',
+                color: 'blue',
+                stroke: 'yellow',
+                strokeThickness: 20,
+                shadow: {
+                    offsetX: 0,
+                    offsetY: 0,
+                    color: '#000',
+                    blur: 0,
+                    stroke: false,
+                    fill: false
+                },
+            });
+
+        playButton.setInteractive();
+
+        playButton.on("pointerover", () => {
+            // hoverSprite.setVisible(true);
+            // hoverSprite.play("walk");
+            // hoverSprite.x = playButton.x - playButton.width;
+            // hoverSprite.y = playButton.y;
+
+        })
+
+        playButton.on("pointerout", () => {
+            // hoverSprite.setVisible(false);
+        })
+
+        playButton.on("pointerup", () => {
+            gameStatus.map = 'level1';
+            this.scene.start('Playground');
+        })
+
+
 
         // let optionsButton = this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2 + 100, CST.IMAGE.OPTIONS).setDepth(1);
 
@@ -43,23 +79,6 @@ class Menu extends Phaser.Scene {
         //         pointerdown - just click
         // */
 
-        // playButton.setInteractive();
-
-        // playButton.on("pointerover", () => {
-        //     hoverSprite.setVisible(true);
-        //     hoverSprite.play("walk");
-        //     hoverSprite.x = playButton.x - playButton.width;
-        //     hoverSprite.y = playButton.y;
-
-        // })
-
-        // playButton.on("pointerout", () => {
-        //     hoverSprite.setVisible(false);
-        // })
-
-        // playButton.on("pointerup", () => {
-        //     this.scene.start(CST.SCENES.PLAY);
-        // })
 
         // optionsButton.setInteractive();
 
@@ -84,17 +103,17 @@ class Menu extends Phaser.Scene {
 
     createBackground() {
         gameConfig.background = {}
-        gameConfig.background.layer1 = this.add.tileSprite(0, 0,10000,1000, 'bgLayer1').setOrigin(0,0);
-        gameConfig.background.layer2 = this.add.tileSprite(0, 0,10000,1000, 'bgLayer2').setOrigin(0,0);
-        gameConfig.background.layer3 = this.add.tileSprite(0, 0,10000,1000, 'bgLayer3').setOrigin(0,0);
+        gameConfig.background.layer1 = this.add.tileSprite(0, 0, 10000, 1000, 'bgLayer1').setOrigin(0, 0);
+        gameConfig.background.layer2 = this.add.tileSprite(0, 0, 10000, 1000, 'bgLayer2').setOrigin(0, 0);
+        gameConfig.background.layer3 = this.add.tileSprite(0, 0, 10000, 1000, 'bgLayer3').setOrigin(0, 0);
 
-        gameConfig.background.layer1.scaleY = 0.75
-        gameConfig.background.layer2.scaleY = 0.75
-        gameConfig.background.layer3.scaleY = 0.75
+        gameConfig.background.layer1.scaleY = 0.65
+        gameConfig.background.layer2.scaleY = 0.65
+        gameConfig.background.layer3.scaleY = 0.65
 
-        gameConfig.background.layer1.scaleX = 0.75
-        gameConfig.background.layer2.scaleX = 0.75
-        gameConfig.background.layer3.scaleX = 0.75
+        gameConfig.background.layer1.scaleX = 0.65
+        gameConfig.background.layer2.scaleX = 0.65
+        gameConfig.background.layer3.scaleX = 0.65
 
         console.log(gameConfig.background.layer1)
 

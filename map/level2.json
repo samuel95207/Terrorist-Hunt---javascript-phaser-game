@@ -1,5 +1,5 @@
 {
-    "name": "map1",
+    "name": "level2",
     "size": {"width":3200,"height":1000},
     "block_size": {"width":80,"height":25},
     "array": [

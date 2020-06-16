@@ -46,5 +46,8 @@ Playground.prototype.buildMap = function(json_file){
         this.createEnemy(enemy_coord.x,enemy_coord.y,map.enemy_spawn_point[i].type)
     }
 
+    //next level
+    gameStatus.next_level = map.next_level;
+
 
 }

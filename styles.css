@@ -1,0 +1,13 @@
+body{
+    background-color: darkblue;
+}
+
+main{
+    margin: 20px;
+}
+
+canvas{
+    border-color: yellow;
+    border-width: 22px;
+    border-style: groove;
+}

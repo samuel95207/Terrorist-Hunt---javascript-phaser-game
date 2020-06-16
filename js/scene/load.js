@@ -21,7 +21,7 @@ class Load extends Phaser.Scene {
 
         this.load.on("progress", (percent) => {
             loadingBar.fillRect(0, this.game.renderer.height * 0.8, this.game.renderer.width * percent, 50);
-            console.log(percent);
+            // console.log(percent);
         })
 
         this.load.on("complete", () => {
@@ -29,7 +29,7 @@ class Load extends Phaser.Scene {
         });
 
         this.load.on("load", (file) => {
-            console.log(file.src)
+            // console.log(file.src)
         })
     }
     create() {

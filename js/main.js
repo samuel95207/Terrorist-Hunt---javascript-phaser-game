@@ -2,6 +2,10 @@ const config = {
     width: gameConfig.width,
     height: gameConfig.height,
     backgroundColor:'black',
+    parent: 'phaser',
+    dom: {
+        createContainer: true
+    },
     physics: {
         default: 'arcade',
         arcade: {
