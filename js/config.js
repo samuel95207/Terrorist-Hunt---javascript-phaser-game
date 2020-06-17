@@ -42,7 +42,7 @@ gameConfig.weapon = {
         cooldownTime: 4,
         ammo: 100,
         fireType: 'bullet',
-        randomCoef: 200,
+        randomCoef: 100,
         bullet: {
             bulletTexture: 'small',
             speed: 2000,
@@ -132,7 +132,42 @@ gameConfig.weapon = {
         }
     },
 
+    shotgun: {
+        handle: {x: 30,y: 15},
+        barrel: {x: [10,100],y: 10},
+        friction: 20,
+        recoil: 700,
+        range: 200,
+        automatic: false,
+        cooldownTime: 6,
+        ammo: 6,
+        fireType: 'bullet-shotgun',
+        randomCoef: 2000,
+        bullet: {
+            bulletTexture: 'small',
+            speed: 2000,
+            trail: true,
+            trail_length: 200,
+            penetrable: false
+        }
+    },
 
+    grenade: {
+        handle: {x: 30,y: 15},
+        friction: 20,
+        range: 200,
+        automatic: false,
+        cooldownTime: 6,
+        ammo: 1,
+        fireType: 'explode',
+        bullet: {
+            bulletTexture: 'small',
+            speed: 2000,
+            trail: true,
+            trail_length: 200,
+            penetrable: false
+        }
+    }
 
 
 }

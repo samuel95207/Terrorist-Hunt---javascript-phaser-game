@@ -60,9 +60,8 @@ class Load extends Phaser.Scene {
         this.load.image('smg', 'images/weapons/smg.png')
         this.load.image('revolver', 'images/weapons/revolver.png')
         this.load.image('sniper', 'images/weapons/sniper.png')
-
-
-
+        this.load.image('shotgun', 'images/weapons/shotgun.png')
+        this.load.image('grenade', 'images/weapons/grenade.png')
 
 
 
