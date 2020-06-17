@@ -56,6 +56,14 @@ class Load extends Phaser.Scene {
         //preload weapons 
         this.load.image('bullet', 'images/weapons/bullet.png')
         this.load.image('assaultRifle', 'images/weapons/assaultrifle.png')
+        this.load.image('pistol', 'images/weapons/pistol.png')
+        this.load.image('smg', 'images/weapons/smg.png')
+        this.load.image('revolver', 'images/weapons/revolver.png')
+        this.load.image('sniper', 'images/weapons/sniper.png')
+
+
+
+
 
 
     }

@@ -80,7 +80,7 @@ class Menu extends Phaser.Scene {
     update(){
         if(this.input.keyboard.addKey('SPACE').isDown){
             gameStatus.cameras.main.fadeOut(1000, 0, 0, 0);
-            gameStatus.map = 'end';
+            gameStatus.map = 'level1';
             this.scene.start('Playground');
         }
     }

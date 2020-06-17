@@ -54,7 +54,7 @@ Playground.prototype.createWeapon = function (x, y, texture) {
 
             bullet.body.setAllowGravity(false);
             bullet.body.velocity.x = weaponConfig.bullet.speed * (weapon.flipX ? -1 : 1);
-            bullet.body.velocity.y = (Math.random()-0.5)*300;
+            bullet.body.velocity.y = (Math.random()-0.5)*weaponConfig.randomCoef;
 
 
 
