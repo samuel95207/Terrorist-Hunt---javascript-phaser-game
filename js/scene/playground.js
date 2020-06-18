@@ -203,7 +203,6 @@ class Playground extends Phaser.Scene {
     if (win && !gameStatus.winFlag) {
       gameStatus.winFlag = true;
       console.log('win');
-      gameStatus.map = gameStatus.next_level;
       gameStatus.cameras.main.zoomTo(2, 1000);
 
       setTimeout(() => {
@@ -214,6 +213,7 @@ class Playground extends Phaser.Scene {
         gameStatus.map = 'end';
       }
       setTimeout(() => {
+        gameStatus.map = gameStatus.next_level;
         gameStatus.music.stop();
         this.scene.restart();
       }, 5000);
