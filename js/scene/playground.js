@@ -177,6 +177,7 @@ class Playground extends Phaser.Scene {
 
   playerLivesCheck(){
     if (gameStatus.player.lives < 0) {
+      gameStatus.cameras.main.fadeOut(2000, 0, 0, 0);
       this.scene.start('MissionFailed');
     }
   }

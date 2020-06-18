@@ -31,7 +31,7 @@ class Menu extends Phaser.Scene {
 
 
         gameStatus.music = this.sound.add('menuBGM');
-        gameStatus.music.play({loop:true,volume: 0.5});
+        gameStatus.music.play({loop:true,volume: 0.2});
     }
 
     update() {
