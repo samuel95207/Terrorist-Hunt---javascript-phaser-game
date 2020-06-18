@@ -6,7 +6,8 @@ Playground.prototype.createWeapon = function (x, y, texture) {
     weapon.setDepth(10);
     weapon.ammo = gameConfig.weapon[weapon.texture.key].ammo;
 
-    weapon.fire = function (playground) {
+    weapon.fire = function () {
+        playground = gameStatus.scene;
         let weapon = this;
         let weaponConfig = gameConfig.weapon[weapon.texture.key];
 

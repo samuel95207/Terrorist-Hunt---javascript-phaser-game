@@ -23,7 +23,7 @@ class Playground extends Phaser.Scene {
     this.cameras.main.startFollow(gameStatus.player, true, 0.5, 0.5)
     gameStatus.player.setCollideWorldBounds(true);
 
-    gameStatus.music.play({loop:true,volume: 0.5});
+    gameStatus.music.play({ loop: true, volume: 0.5 });
 
 
     if (gameStatus.map == 'end') {
@@ -77,6 +77,10 @@ class Playground extends Phaser.Scene {
 
 
   update() {
+    this.carryItemProcess();
+    this.ballistic();
+    this.enemyMovement();
+
     if (gameStatus.map == 'end') {
       return;
     }
@@ -84,10 +88,8 @@ class Playground extends Phaser.Scene {
     this.playerControl();
     this.dropItemControl();
     this.fireWeaponControl();
-    this.carryItemProcess();
-    this.ballistic();
 
-    this.enemyMovement();
+
 
     if (gameStatus.player.lives < 0) {
       this.scene.restart();
@@ -195,27 +197,67 @@ class Playground extends Phaser.Scene {
 
 
   endgameScene() {
-    gameStatus.player.carryItem = Playground.prototype.createWeapon(gameStatus.player.body.x, gameStatus.player.body.y, 'assaultRifle');
-    let weapon =gameStatus.player.carryItem;
-    gameStatus.player.carryItem.owner = gameStatus.player;
-
     gameStatus.cameras.main.setZoom(1);
     gameStatus.cameras.main.fadeIn(300, 0, 0, 0);
+
     setTimeout(() => {
       gameStatus.cameras.main.zoomTo(1.5, 100);
     }, 1000);
+
     setTimeout(() => {
-      gameStatus.cameras.main.zoomTo(2, 100);
-    }, 3000);
+      gameStatus.cameras.main.zoomTo(1.7, 100);
+    }, 3600);
+
+    setTimeout(() => {
+      gameStatus.cameras.main.zoomTo(2.1, 100);
+    }, 6000);
+
     setTimeout(() => {
       gameStatus.cameras.main.zoomTo(2.5, 100);
-      for(let i = 0;i < 10000;i++){
-        console.log(gameStatus.player.carryItem);
+    }, 8500);
+
+    setTimeout(() => {
+
+      gameStatus.titleText = this.add.text(200, gameConfig.height * 0.95, 'Winner',
+        {
+          fontFamily: 'Arial',
+          fontSize: '70px',
+          fontStyle: 'bold',
+          color: 'yellow',
+          stroke: 'aqua',
+          strokeThickness: 3
+        }
+      )
+
+    }, 6000);
+
+    var weapon = Playground.prototype.createWeapon(gameStatus.player.body.x, gameStatus.player.body.y, 'assaultRifle');
+    gameStatus.player.carryItem = weapon
+    weapon.ammo = 1000000000
+    weapon.owner = gameStatus.player;
+
+    setTimeout(() => {
+      var id = setInterval(function () {
+        gameStatus.player.carryItem = weapon
+        weapon.owner = gameStatus.player;
         weapon.fire();
-        gameStatus.player.right();
-      }
-      
-    }, 5000);
+        gameStatus.player.stand();
+      }, 100);
+
+      setTimeout(() => {
+        clearInterval(id);
+      }, 3000)
+
+    }, 10000);
+
+    setTimeout(() => {
+      gameStatus.cameras.main.fadeOut(2000, 0, 0, 0);
+    }, 13000);
+
+    setTimeout(() => {
+      gameStatus.music.stop();
+      this.scene.start('Menu');
+    }, 15000);
   }
 
 }
