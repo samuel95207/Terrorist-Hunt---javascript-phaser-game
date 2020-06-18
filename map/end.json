@@ -31,5 +31,6 @@
 
 
     ],
-    "spawn_point": {"x":24,"y":19}
+    "spawn_point": {"x":24,"y":19},
+    "bgm":"endBGM"
 }

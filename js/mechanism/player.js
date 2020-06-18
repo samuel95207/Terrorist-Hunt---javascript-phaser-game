@@ -38,6 +38,35 @@ Playground.prototype.createPlayer = function(x,y,texture){
         }
     }
 
+    player.jump = function(){
+        if(player.body.blocked.down){
+            player.anims.play('jump', true);
+            player.setVelocityY(-gameConfig.jumpVelocity);
+            }
+            
+    }
+
+    player.left = function(){
+        if(-player.body.velocity.x < player.maxSpeed){
+            player.body.velocity.x -= gameConfig.playerAcceleration;
+        }
+        player.anims.play('run', true);
+        player.flipX = true;
+    }
+
+    player.right = function(){
+        if(player.body.velocity.x < player.maxSpeed){
+            player.body.velocity.x += gameConfig.playerAcceleration;
+        }
+
+        player.anims.play('run', true);
+        player.flipX = false;
+    }
+
+    player.stand = function(){
+        player.anims.play('idle', true);
+    }
+
 
 
     return player;
@@ -46,29 +75,16 @@ Playground.prototype.createPlayer = function(x,y,texture){
 
 Playground.prototype.playerControl = function(){    
     if (gameStatus.cursors.right.isDown) {
-        if(gameStatus.player.body.velocity.x < gameStatus.player.maxSpeed){
-            gameStatus.player.body.velocity.x += gameConfig.playerAcceleration;
-        }
-
-        gameStatus.player.anims.play('run', true);
-        gameStatus.player.flipX = false;
-            
+        gameStatus.player.right();
     } else if (gameStatus.cursors.left.isDown) {
-        if(-gameStatus.player.body.velocity.x < gameStatus.player.maxSpeed){
-            gameStatus.player.body.velocity.x -= gameConfig.playerAcceleration;
-        }
-        gameStatus.player.anims.play('run', true);
-        gameStatus.player.flipX = true;
-            
+        gameStatus.player.left();
     } else {
-            // gameStatus.player.setVelocityX(0);
-        gameStatus.player.anims.play('idle', true);
+        gameStatus.player.stand();
     }
 
 
-    if ( gameStatus.cursors.jump.isDown && gameStatus.player.body.blocked.down) {
-        gameStatus.player.anims.play('jump', true);
-        gameStatus.player.setVelocityY(-gameConfig.jumpVelocity);
+    if ( gameStatus.cursors.jump.isDown) {
+        gameStatus.player.jump();
     }
 }
 

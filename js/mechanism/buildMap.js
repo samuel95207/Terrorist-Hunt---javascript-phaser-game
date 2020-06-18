@@ -53,5 +53,8 @@ Playground.prototype.buildMap = function (json_file) {
     //next level
     gameStatus.next_level = map.next_level;
 
+    gameStatus.music = this.sound.add(map["bgm"]);
+    
+
 
 }

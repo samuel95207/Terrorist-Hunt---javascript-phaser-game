@@ -23,6 +23,8 @@ class Playground extends Phaser.Scene {
     this.cameras.main.startFollow(gameStatus.player, true, 0.5, 0.5)
     gameStatus.player.setCollideWorldBounds(true);
 
+    gameStatus.music.play({loop:true});
+
 
     if (gameStatus.map == 'end') {
       this.endgameScene();
@@ -157,7 +159,7 @@ class Playground extends Phaser.Scene {
     gameStatus.cameras.main.fadeIn(500, 0, 0, 0);
     setTimeout(() => {
       gameStatus.cameras.main.zoomTo(1, 500);
-    }, 200);
+    }, 100);
   }
 
   stageClearCheck() {
@@ -184,6 +186,7 @@ class Playground extends Phaser.Scene {
         gameStatus.map = 'end';
       }
       setTimeout(() => {
+        gameStatus.music.stop();
         this.scene.restart();
       }, 5000);
 

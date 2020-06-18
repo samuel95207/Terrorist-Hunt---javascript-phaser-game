@@ -7,6 +7,14 @@ class Menu extends Phaser.Scene {
         //creating the menu screen
         this.createBackground();
 
+        gameStatus.titleText = this.add.text(gameConfig.width / 2 - 100, gameConfig.height * 0.3, 'Terrorist Hunt',
+        {
+            fontFamily: 'Arial',
+            fontSize: '30px',
+            fontStyle: 'bold',
+            color: 'aqua',
+        });
+
 
         gameStatus.startText = this.add.text(gameConfig.width / 2 - 150, gameConfig.height * 0.8, 'Press Space to Start',
             {
@@ -22,13 +30,15 @@ class Menu extends Phaser.Scene {
         gameStatus.cameras = this.cameras;
 
 
-
+        gameStatus.music = this.sound.add('menuBGM');
+        gameStatus.music.play({loop:true});
     }
 
     update() {
         if (this.input.keyboard.addKey('SPACE').isDown) {
             gameStatus.cameras.main.fadeOut(1000, 0, 0, 0);
             gameStatus.map = 'level1';
+            gameStatus.music.stop();
             this.scene.start('Playground');
         }
 
@@ -45,6 +55,14 @@ class Menu extends Phaser.Scene {
         }
         if(gameStatus.startText.scaleX > 1.2 || gameStatus.startText.scaleX < 1){
             gameStatus.textDir = !gameStatus.textDir;
+        }
+
+
+
+        if(gameStatus.titleText.scaleX < 3.5){
+            gameStatus.titleText.scaleX += 0.05;
+            gameStatus.titleText.scaleY += 0.05;
+            gameStatus.titleText.x -= 5;
         }
     }
 

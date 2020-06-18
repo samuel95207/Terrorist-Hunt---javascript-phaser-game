@@ -11,6 +11,7 @@ class Load extends Phaser.Scene {
         this.loadWeapons();
         this.loadEnemies();
         this.loadPlayer();
+        this.loadBGM();
 
 
         let loadingBar = this.add.graphics({
@@ -32,6 +33,7 @@ class Load extends Phaser.Scene {
             // console.log(file.src)
         })
     }
+    
     create() {
         this.scene.start('Menu');
     }
@@ -70,9 +72,6 @@ class Load extends Phaser.Scene {
         this.load.audio('smgSound', 'sounds/weapons/smg.wav');
         this.load.audio('emptySound', 'sounds/weapons/empty.wav');
         this.load.audio('explodeSound', 'sounds/weapons/explode.wav');
-
-
-
     }
 
     loadEnemies() {
@@ -82,6 +81,15 @@ class Load extends Phaser.Scene {
     loadPlayer() {
         //TODO: find animation spritesheet
         this.load.spritesheet('codey', 'https://s3.amazonaws.com/codecademy-content/courses/learn-phaser/Cave+Crisis/codey_sprite.png', { frameWidth: 72, frameHeight: 90 })
+    }
+
+    loadBGM(){
+        this.load.audio('menuBGM', 'sounds/bgm/menu.wav');
+        this.load.audio('level1BGM', 'sounds/bgm/level1.wav');
+        this.load.audio('level2BGM', 'sounds/bgm/level2.wav');
+        this.load.audio('endBGM', 'sounds/bgm/end.wav');
+
+
     }
 
 }
