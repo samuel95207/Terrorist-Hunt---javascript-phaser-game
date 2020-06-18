@@ -3,7 +3,6 @@ class Playground extends Phaser.Scene {
     super('Playground');
   }
 
-
   create() {
     this.createBackground();
 
