@@ -3,8 +3,6 @@ const gameConfig = {}
 gameConfig.height = window.innerHeight-120;
 gameConfig.width = window.innerWidth-120;
 
-console.log(gameConfig.width)
-
 //player configs
 gameConfig.playerAcceleration = 70;
 gameConfig.playerFriction = 30;
@@ -40,3 +38,4 @@ gameConfig.enemy = {
         weapon: "assaultRifle"
     }
 }
+

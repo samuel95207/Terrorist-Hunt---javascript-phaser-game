@@ -108,6 +108,7 @@ class Playground extends Phaser.Scene {
 
   //create Backgound
   createBackground() {
+    gameStatus.scene = this;
     gameConfig.background = {}
     // gameConfig.background.layer1 = this.add.image(0, 0, 'bgLayer1').setOrigin(0,0);
     // gameConfig.background.layer2 = this.add.image(0, 0, 'bgLayer2').setOrigin(0,0);

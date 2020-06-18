@@ -63,6 +63,14 @@ class Load extends Phaser.Scene {
         this.load.image('shotgun', 'images/weapons/shotgun.png')
         this.load.image('grenade', 'images/weapons/grenade.png')
 
+        this.load.audio('assaultRifleSound', 'sounds/weapons/assaultRifle.wav');
+        this.load.audio('pistolSound', 'sounds/weapons/pistol.wav');
+        this.load.audio('shotgunSound', 'sounds/weapons/shotgun.wav');
+        this.load.audio('sniperSound', 'sounds/weapons/sniper.wav');
+        this.load.audio('smgSound', 'sounds/weapons/smg.wav');
+        this.load.audio('emptySound', 'sounds/weapons/empty.wav');
+        this.load.audio('explodeSound', 'sounds/weapons/explode.wav');
+
 
 
     }

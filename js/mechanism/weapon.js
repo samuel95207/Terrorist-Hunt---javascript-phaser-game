@@ -1,13 +1,16 @@
 Playground.prototype.createWeapon = function (x, y, texture) {
     let weapon = gameStatus.weapons.create(x, y, texture);
+
     weapon.cooldownCounter = 5000;
     weapon.release = true;
     weapon.setDepth(10);
+    console.log(gameConfig.weapon)
+    weapon.ammo = gameConfig.weapon[weapon.texture.key].ammo;
 
     weapon.fire = function (playground) {
         let weapon = this;
         let weaponConfig = gameConfig.weapon[weapon.texture.key];
-        weapon.ammo = gameConfig.weapon[weapon.texture.key].ammo;
+
 
 
 
@@ -19,10 +22,21 @@ Playground.prototype.createWeapon = function (x, y, texture) {
                 return;
             }
             if (weapon.ammo === 0) {
+                if(gameStatus.emptySound){
+                    console.log(gameStatus.emptySound.isPlaying)
+                    if(gameStatus.emptySound.isPlaying){
+                        return;
+                    }
+                }
+                gameStatus.emptySound = gameStatus.scene.sound.add(weaponConfig.emptySound);
+                gameStatus.emptySound.play();
                 return;
             }
 
-
+            if(weaponConfig.fireSound != undefined){
+                gameStatus.scene.sound.play(weaponConfig.fireSound);
+            }
+            
             let pos = { x: weapon.body.x + (weapon.flipX ? -weaponConfig.barrel.x[0] : weaponConfig.barrel.x[1]), y: weapon.body.y + weaponConfig.barrel.y };
             let bullet;
             if (weapon.flipX) {
@@ -71,7 +85,19 @@ Playground.prototype.createWeapon = function (x, y, texture) {
                 return;
             }
             if (weapon.ammo === 0) {
+                if(gameStatus.emptySound){
+                    console.log(gameStatus.emptySound.isPlaying)
+                    if(gameStatus.emptySound.isPlaying){
+                        return;
+                    }
+                }
+                gameStatus.emptySound = gameStatus.scene.sound.add(weaponConfig.emptySound);
+                gameStatus.emptySound.play();
                 return;
+            }
+
+            if(weaponConfig.fireSound != undefined){
+                gameStatus.scene.sound.play(weaponConfig.fireSound);
             }
 
 
@@ -119,6 +145,7 @@ Playground.prototype.createWeapon = function (x, y, texture) {
 
             setTimeout(() => {
                 let pos = { x: weapon.body.x, y: weapon.body.y };
+                gameStatus.scene.sound.play(weaponConfig.fireSound);
                 for (let i = -1; i < 2; i+=2) {
                     for (let j = -20; j < 20; j++) {
                         let bullet = gameStatus.bullets.create(pos.x, pos.y, 'bullet');

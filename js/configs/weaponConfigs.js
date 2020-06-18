@@ -1,4 +1,3 @@
-
 gameConfig.weapon = {
 
     assaultRifle: {
@@ -9,8 +8,10 @@ gameConfig.weapon = {
         range: 700,
         automatic: true,
         cooldownTime: 4,
-        ammo: 100,
+        ammo: 50,
         fireType: 'bullet',
+        fireSound: 'assaultRifleSound',
+        emptySound: 'emptySound',
         randomCoef: 100,
         bullet: {
             bulletTexture: 'small',
@@ -31,6 +32,8 @@ gameConfig.weapon = {
         cooldownTime: 4,
         ammo: 10,
         fireType: 'bullet',
+        fireSound: 'pistolSound',
+        emptySound: 'emptySound',
         randomCoef: 100,
         bullet: {
             bulletTexture: 'small',
@@ -51,6 +54,8 @@ gameConfig.weapon = {
         cooldownTime: 6,
         ammo: 6,
         fireType: 'bullet',
+        fireSound: 'pistolSound',
+        emptySound : 'emptySound',
         randomCoef: 50,
         bullet: {
             bulletTexture: 'small',
@@ -68,9 +73,11 @@ gameConfig.weapon = {
         recoil: 500,
         range: 2000,
         automatic: false,
-        cooldownTime: 20,
+        cooldownTime: 160,
         ammo: 10,
         fireType: 'bullet',
+        fireSound: 'sniperSound',
+        emptySound : 'emptySound',
         randomCoef: 0,
         bullet: {
             bulletTexture: 'small',
@@ -91,6 +98,8 @@ gameConfig.weapon = {
         cooldownTime: 3,
         ammo: 50,
         fireType: 'bullet',
+        fireSound: 'smgSound',
+        emptySound : 'emptySound',
         randomCoef: 500,
         bullet: {
             bulletTexture: 'small',
@@ -108,9 +117,11 @@ gameConfig.weapon = {
         recoil: 700,
         range: 200,
         automatic: false,
-        cooldownTime: 6,
+        cooldownTime: 80,
         ammo: 6,
         fireType: 'bullet-shotgun',
+        fireSound: 'shotgunSound',
+        emptySound : 'emptySound',
         randomCoef: 2000,
         bullet: {
             bulletTexture: 'small',
@@ -129,6 +140,7 @@ gameConfig.weapon = {
         cooldownTime: 6,
         ammo: 1,
         fireType: 'explode',
+        fireSound: 'explodeSound',
         bullet: {
             bulletTexture: 'small',
             speed: 2000,
