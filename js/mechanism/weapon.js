@@ -4,7 +4,6 @@ Playground.prototype.createWeapon = function (x, y, texture) {
     weapon.cooldownCounter = 5000;
     weapon.release = true;
     weapon.setDepth(10);
-    console.log(gameConfig.weapon)
     weapon.ammo = gameConfig.weapon[weapon.texture.key].ammo;
 
     weapon.fire = function (playground) {
