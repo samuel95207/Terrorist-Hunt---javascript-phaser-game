@@ -81,6 +81,10 @@ class Load extends Phaser.Scene {
     loadPlayer() {
         //TODO: find animation spritesheet
         this.load.spritesheet('codey', 'https://s3.amazonaws.com/codecademy-content/courses/learn-phaser/Cave+Crisis/codey_sprite.png', { frameWidth: 72, frameHeight: 90 })
+        this.load.audio('playerDieSound', 'sounds/player/playerDie.wav');
+        this.load.audio('playerJumpSound', 'sounds/player/playerJump.wav');
+
+
     }
 
     loadBGM(){

@@ -4,6 +4,10 @@ class Playground extends Phaser.Scene {
   }
 
   create() {
+    if (gameStatus.music != undefined) {
+      gameStatus.music.stop();
+    }
+
     this.createBackground();
 
     gameStatus.blocks = this.physics.add.staticGroup();
@@ -89,13 +93,12 @@ class Playground extends Phaser.Scene {
     this.dropItemControl();
     this.fireWeaponControl();
 
+    this.playerLivesCheck();
 
-
-    if (gameStatus.player.lives < 0) {
-      this.scene.restart();
-    }
 
     this.stageClearCheck();
+
+    this.livesDisplay();
 
 
 
@@ -154,6 +157,28 @@ class Playground extends Phaser.Scene {
 
   blockToCoord_LU(x, y) {
     return { x: 40 * x, y: 40 * y }
+  }
+
+  livesDisplay() {
+    if(gameStatus.liveText  != undefined){
+      gameStatus.liveText.destroy();
+    }
+    gameStatus.liveText = this.add.text(50, 50, `lives: ${gameStatus.player.lives}`,
+      {
+        fontFamily: 'Arial',
+        fontSize: '20px',
+        fontStyle: 'bold',
+        color: 'white',
+      }
+    );
+    gameStatus.liveText.setScrollFactor(0);
+
+  }
+
+  playerLivesCheck(){
+    if (gameStatus.player.lives < 0) {
+      this.scene.start('MissionFailed');
+    }
   }
 
   startScene() {
