@@ -23,7 +23,7 @@ class Playground extends Phaser.Scene {
     this.cameras.main.startFollow(gameStatus.player, true, 0.5, 0.5)
     gameStatus.player.setCollideWorldBounds(true);
 
-    gameStatus.music.play({loop:true});
+    gameStatus.music.play({loop:true,volume: 0.5});
 
 
     if (gameStatus.map == 'end') {
@@ -195,6 +195,10 @@ class Playground extends Phaser.Scene {
 
 
   endgameScene() {
+    gameStatus.player.carryItem = Playground.prototype.createWeapon(gameStatus.player.body.x, gameStatus.player.body.y, 'assaultRifle');
+    let weapon =gameStatus.player.carryItem;
+    gameStatus.player.carryItem.owner = gameStatus.player;
+
     gameStatus.cameras.main.setZoom(1);
     gameStatus.cameras.main.fadeIn(300, 0, 0, 0);
     setTimeout(() => {
@@ -205,6 +209,12 @@ class Playground extends Phaser.Scene {
     }, 3000);
     setTimeout(() => {
       gameStatus.cameras.main.zoomTo(2.5, 100);
+      for(let i = 0;i < 10000;i++){
+        console.log(gameStatus.player.carryItem);
+        weapon.fire();
+        gameStatus.player.right();
+      }
+      
     }, 5000);
   }
 
