@@ -1,4 +1,4 @@
-Playground.prototype.createEnemy = function (x, y, texture) {
+Playground.prototype.createEnemy = function (x, y, texture, weapon) {
     let enemy = gameStatus.enemies.create(x, y, texture);
     let enemyConfig = gameConfig.enemy[texture];
     enemy.is_dead = false;
@@ -7,7 +7,7 @@ Playground.prototype.createEnemy = function (x, y, texture) {
     enemy.fireProbability = enemyConfig.fireProbability;
     enemy.fireDelay = enemyConfig.fireDelay;
 
-    enemy.carryItem = Playground.prototype.createWeapon(enemy.body.x, enemy.body.y, enemyConfig.weapon)
+    enemy.carryItem = Playground.prototype.createWeapon(enemy.body.x, enemy.body.y, weapon)
     enemy.carryItem.owner = enemy;
 
     // console.log(enemy.carryItem)
@@ -108,6 +108,10 @@ Playground.prototype.enemyMovement = function () {
                 }
             }
         })
+
+        if(enemy.y > gameStatus.mapSize.height - 10){
+            enemy.die();
+        }
 
 
 

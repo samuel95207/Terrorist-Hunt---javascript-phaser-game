@@ -134,7 +134,7 @@ gameConfig.weapon = {
 
     grenade: {
         handle: {x: 30,y: 15},
-        friction: 20,
+        friction: 25,
         range: 200,
         automatic: false,
         cooldownTime: 6,

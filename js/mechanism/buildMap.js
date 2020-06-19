@@ -46,7 +46,7 @@ Playground.prototype.buildMap = function (json_file) {
     if (map.enemy_spawn_point) {
         for (i = 0; i < map.enemy_spawn_point.length; i++) {
             let enemy_coord = this.blockToCoord_LU(map.enemy_spawn_point[i].x, map.enemy_spawn_point[i].y);
-            this.createEnemy(enemy_coord.x, enemy_coord.y, map.enemy_spawn_point[i].type)
+            this.createEnemy(enemy_coord.x, enemy_coord.y, map.enemy_spawn_point[i].type,map.enemy_spawn_point[i].weapon)
         }
     }
 

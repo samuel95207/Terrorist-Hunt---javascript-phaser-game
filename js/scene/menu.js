@@ -7,6 +7,10 @@ class Menu extends Phaser.Scene {
         //creating the menu screen
         this.createBackground();
 
+        this.music = this.sound.add('menuBGM');
+        this.music.setVolume(0.4);
+        this.music.play({ loop: true });
+
         gameStatus.titleText = this.add.text(gameConfig.width / 2 - 100, gameConfig.height * 0.3, 'Terrorist Hunt',
             {
                 fontFamily: 'Arial',
@@ -38,15 +42,15 @@ class Menu extends Phaser.Scene {
         gameStatus.cameras = this.cameras;
 
 
-        gameStatus.music = this.sound.add('menuBGM');
-        gameStatus.music.play({ loop: true, volume: 0.2 });
+
+        
     }
 
     update() {
         if (this.input.keyboard.addKey('SPACE').isDown) {
             gameStatus.cameras.main.fadeOut(1000, 0, 0, 0);
             gameStatus.map = 'level1';
-            gameStatus.music.stop();
+            this.music.stop();
             this.scene.start('Playground');
         }
 

@@ -5,9 +5,9 @@ gameConfig.width = window.innerWidth-120;
 
 //player configs
 gameConfig.playerAcceleration = 70;
-gameConfig.playerFriction = 40;
+gameConfig.playerFriction = 30;
 gameConfig.playerMaxSpeed = 600;
-gameConfig.jumpVelocity = 1100;
+gameConfig.jumpVelocity = 1300;
 gameConfig.playerLives = 3;
 
 //physics configs

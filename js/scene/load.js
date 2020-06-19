@@ -7,11 +7,11 @@ class Load extends Phaser.Scene {
         var title = this.add.text(gameConfig.width/2 - 40, gameConfig.height/2, "Loading", style);
 
         this.loadBackground();
+        this.loadBGM();
         this.loadBlocks();
         this.loadWeapons();
         this.loadEnemies();
         this.loadPlayer();
-        this.loadBGM();
 
 
         let loadingBar = this.add.graphics({
