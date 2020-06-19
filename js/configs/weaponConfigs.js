@@ -15,7 +15,7 @@ gameConfig.weapon = {
         randomCoef: 100,
         bullet: {
             bulletTexture: 'small',
-            speed: 2000,
+            speed: 3000,
             trail: true,
             trail_length: 200,
             penetrable: false
@@ -37,7 +37,7 @@ gameConfig.weapon = {
         randomCoef: 100,
         bullet: {
             bulletTexture: 'small',
-            speed: 2000,
+            speed: 3000,
             trail: true,
             trail_length: 200,
             penetrable: false
@@ -59,7 +59,7 @@ gameConfig.weapon = {
         randomCoef: 50,
         bullet: {
             bulletTexture: 'small',
-            speed: 2000,
+            speed: 3000,
             trail: true,
             trail_length: 200,
             penetrable: false
@@ -103,7 +103,7 @@ gameConfig.weapon = {
         randomCoef: 500,
         bullet: {
             bulletTexture: 'small',
-            speed: 2000,
+            speed: 3000,
             trail: true,
             trail_length: 150,
             penetrable: false
@@ -125,7 +125,7 @@ gameConfig.weapon = {
         randomCoef: 2000,
         bullet: {
             bulletTexture: 'small',
-            speed: 2000,
+            speed: 3000,
             trail: true,
             trail_length: 200,
             penetrable: false
@@ -143,7 +143,7 @@ gameConfig.weapon = {
         fireSound: 'explodeSound',
         bullet: {
             bulletTexture: 'small',
-            speed: 2000,
+            speed: 3000,
             trail: true,
             trail_length: 200,
             penetrable: false

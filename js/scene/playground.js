@@ -160,7 +160,7 @@ class Playground extends Phaser.Scene {
   }
 
   livesDisplay() {
-    if(gameStatus.liveText  != undefined){
+    if (gameStatus.liveText != undefined) {
       gameStatus.liveText.destroy();
     }
     gameStatus.liveText = this.add.text(50, 50, `lives: ${gameStatus.player.lives}`,
@@ -175,7 +175,7 @@ class Playground extends Phaser.Scene {
 
   }
 
-  playerLivesCheck(){
+  playerLivesCheck() {
     if (gameStatus.player.lives < 0) {
       gameStatus.cameras.main.fadeOut(2000, 0, 0, 0);
       this.scene.start('MissionFailed');
@@ -209,11 +209,11 @@ class Playground extends Phaser.Scene {
         gameStatus.cameras.main.fadeOut(1000, 0, 0, 0);
       }, 4000);
 
-      if (!gameStatus.map) {
-        gameStatus.map = 'end';
-      }
       setTimeout(() => {
         gameStatus.map = gameStatus.next_level;
+        if (!gameStatus.map) {
+          gameStatus.map = 'end';
+        }
         gameStatus.music.stop();
         this.scene.restart();
       }, 5000);

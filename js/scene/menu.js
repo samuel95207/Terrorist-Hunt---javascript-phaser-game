@@ -8,18 +8,26 @@ class Menu extends Phaser.Scene {
         this.createBackground();
 
         gameStatus.titleText = this.add.text(gameConfig.width / 2 - 100, gameConfig.height * 0.3, 'Terrorist Hunt',
-        {
-            fontFamily: 'Arial',
-            fontSize: '30px',
-            fontStyle: 'bold',
-            color: 'aqua',
-        });
+            {
+                fontFamily: 'Arial',
+                fontSize: '30px',
+                fontStyle: 'bold',
+                color: 'aqua',
+            });
 
 
         gameStatus.startText = this.add.text(gameConfig.width / 2 - 150, gameConfig.height * 0.8, 'Press Space to Start',
             {
                 fontFamily: 'Arial',
                 fontSize: '30px',
+                fontStyle: 'bold',
+                color: 'white',
+            });
+
+        this.add.text(gameConfig.width / 2 - 100, gameConfig.height * 0.9, '      C: pickup      Z: fire\nup/right/left: movement',
+            {
+                fontFamily: 'Arial',
+                fontSize: '20px',
                 fontStyle: 'bold',
                 color: 'white',
             });
@@ -31,7 +39,7 @@ class Menu extends Phaser.Scene {
 
 
         gameStatus.music = this.sound.add('menuBGM');
-        gameStatus.music.play({loop:true,volume: 0.2});
+        gameStatus.music.play({ loop: true, volume: 0.2 });
     }
 
     update() {
@@ -42,24 +50,24 @@ class Menu extends Phaser.Scene {
             this.scene.start('Playground');
         }
 
-        if(gameStatus.textDir){
+        if (gameStatus.textDir) {
             gameStatus.startText.scaleX += 0.01;
             gameStatus.startText.scaleY += 0.01;
             gameStatus.startText.x -= 1;
             gameStatus.startText.y -= 1;
-        }else{
+        } else {
             gameStatus.startText.scaleX -= 0.01;
             gameStatus.startText.scaleY -= 0.01;
             gameStatus.startText.x += 1;
             gameStatus.startText.y += 1;
         }
-        if(gameStatus.startText.scaleX > 1.2 || gameStatus.startText.scaleX < 1){
+        if (gameStatus.startText.scaleX > 1.2 || gameStatus.startText.scaleX < 1) {
             gameStatus.textDir = !gameStatus.textDir;
         }
 
 
 
-        if(gameStatus.titleText.scaleX < 3.5){
+        if (gameStatus.titleText.scaleX < 3.5) {
             gameStatus.titleText.scaleX += 0.05;
             gameStatus.titleText.scaleY += 0.05;
             gameStatus.titleText.x -= 5;

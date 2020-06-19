@@ -83,7 +83,7 @@ Playground.prototype.playerControl = function () {
     }
 
 
-    if (gameStatus.cursors.jump.isDown) {
+    if (gameStatus.cursors.jump.isDown || this.input.keyboard.addKey('SPACE').isDown) {
         gameStatus.player.jump();
     }
 }
