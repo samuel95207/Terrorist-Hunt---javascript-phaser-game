@@ -68,22 +68,47 @@ Playground.prototype.createPlayer = function (x, y, texture) {
         player.body.velocity.x *= 0.9;
     }
 
+    player.pickup = function (weapon) {
+        if (player.dropCounter > 10) {
+            if (player.carryItem === null) {
+                player.carryItem = weapon
+                weapon.owner = player
 
-    player.dropItem = function(){
-        if ( player.carryItemCounter > 10 && player.carryItem != null) {
+                weapon.body.setAllowGravity(false)
+
+                let weaponConfig = gameConfig.weapon[weapon.texture.key]
+                if (player.flipX === true) {
+                    weapon.x = player.x - weaponConfig.handle.x
+                } else {
+                    weapon.x = player.x + weaponConfig.handle.x
+                }
+                weapon.y = player.y + weaponConfig.handle.y
+
+                gameStatus.player.carryItemCounter = 0;
+            }
+        }
+    }
+
+    player.dropItem = function () {
+        if (player.carryItemCounter > 10 && player.carryItem != null) {
             let item = player.carryItem;
-            item.body.velocity.x = player.body.velocity.x * 1.5 + (player.flipX?-100:100);
+            item.body.velocity.x = player.body.velocity.x * 1.5 + (player.flipX ? -100 : 100);
             item.body.velocity.y = -800;
             item.body.setAllowGravity(true);
             player.carryItem = null;
             item.owner = null;
-    
+
             player.dropCounter = 0;
         }
 
     }
 
-
+    player.fire = function () {
+        if (player.carryItem != null) {
+            let weapon = gameStatus.player.carryItem;
+            weapon.fire(this);
+        }
+    }
 
     return player;
 }
@@ -97,11 +122,9 @@ Playground.prototype.playerControl = function () {
     } else {
         gameStatus.player.stand();
     }
-
-
     if (gameStatus.cursors.jump.isDown || this.input.keyboard.addKey('SPACE').isDown) {
         gameStatus.player.jump();
-    }status
+    } status
 }
 
 Playground.prototype.dropItemControl = function () {
@@ -109,19 +132,19 @@ Playground.prototype.dropItemControl = function () {
         player.dropCounter += 1;
         player.carryItemCounter += 1;
     })
-    if(gameStatus.cursors.pickup.isDown){
+    if (gameStatus.cursors.pickup.isDown) {
         gameStatus.player.dropItem();
     }
-    
+
 }
 
 Playground.prototype.fireWeaponControl = function () {
-    if (gameStatus.player.carryItem != null) {
-        let weapon = gameStatus.player.carryItem;
-        if (gameStatus.cursors.fire.isDown) {
-            weapon.fire(this);
-        } else {
-            weapon.release = true;
+    if (gameStatus.cursors.fire.isDown) {
+        gameStatus.player.fire();
+    }
+    else {
+        if (gameStatus.player.carryItem) {
+            gameStatus.player.carryItem.release = true;
         }
     }
 }

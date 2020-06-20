@@ -99,7 +99,7 @@ class Playground extends Phaser.Scene {
     this.stageClearCheck();
 
     this.livesDisplay();
-
+    this.enemiesLeftDisplay();
 
 
 
@@ -163,7 +163,7 @@ class Playground extends Phaser.Scene {
     if (gameStatus.liveText != undefined) {
       gameStatus.liveText.destroy();
     }
-    gameStatus.liveText = this.add.text(50, 50, `lives: ${gameStatus.player.lives}`,
+    gameStatus.liveText = this.add.text(50, 20, `lives: ${gameStatus.player.lives}`,
       {
         fontFamily: 'Arial',
         fontSize: '20px',
@@ -172,8 +172,29 @@ class Playground extends Phaser.Scene {
       }
     );
     gameStatus.liveText.setScrollFactor(0);
-
   }
+
+  enemiesLeftDisplay() {
+    if (gameStatus.enemiesLeftText != undefined) {
+      gameStatus.enemiesLeftText.destroy();
+    }
+    let enemiesCount = 0;
+    gameStatus.enemies.children.each(function (enemy) {
+      if (!enemy.is_dead) {
+        enemiesCount++;
+      }
+    })
+    gameStatus.enemiesLeftText = this.add.text(gameConfig.width / 2 - 50, 20, `${enemiesCount} enemies left`,
+      {
+        fontFamily: 'Arial',
+        fontSize: '20px',
+        fontStyle: 'bold',
+        color: 'white',
+      }
+    );
+    gameStatus.enemiesLeftText.setScrollFactor(0);
+  }
+
 
   playerLivesCheck() {
     if (gameStatus.player.lives < 0) {

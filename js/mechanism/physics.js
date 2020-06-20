@@ -2,23 +2,8 @@ Playground.prototype.playerWeaponOverlap = function () {
     gameStatus.player.carryItem = null;
     gameStatus.player.dropCounter = 51;
     this.physics.add.overlap(gameStatus.player, gameStatus.weapons, function (player, weapon) {
-        if (gameStatus.cursors.pickup.isDown && gameStatus.player.dropCounter > 10) {
-            if (player.carryItem === null) {
-                player.carryItem = weapon
-                weapon.owner = player
-
-                weapon.body.setAllowGravity(false)
-
-                let weaponConfig = gameConfig.weapon[weapon.texture.key]
-                if (player.flipX === true) {
-                    weapon.x = player.x - weaponConfig.handle.x
-                } else {
-                    weapon.x = player.x + weaponConfig.handle.x
-                }
-                weapon.y = player.y + weaponConfig.handle.y
-
-                gameStatus.player.carryItemCounter = 0;
-            }
+        if (gameStatus.cursors.pickup.isDown) {
+            player.pickup(weapon);
         }
     })
 }

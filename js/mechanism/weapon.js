@@ -146,6 +146,18 @@ Playground.prototype.createWeapon = function (x, y, texture) {
             setTimeout(() => {
                 let pos = { x: weapon.body.x, y: weapon.body.y };
                 gameStatus.scene.sound.play(weaponConfig.fireSound);
+                // gameStatus.players.children.each(function (entity) {
+                //     if((entity.x-pos.x)**2 + (entity.y-pos.y)**2 < (weaponConfig.range)**2){
+                //         entity.die();
+                //     }
+                // })
+                gameStatus.enemies.children.each(function (entity) {
+                    console.log((entity.x-pos.x)**2 + (entity.y-pos.y)**2);
+                    if((entity.x-pos.x)**2 + (entity.y-pos.y)**2 < (weaponConfig.range)**2){
+                        entity.angle += 90;
+                        entity.die();
+                    }
+                })
                 for (let i = -1; i < 2; i+=2) {
                     for (let j = -20; j < 20; j++) {
                         let bullet = gameStatus.bullets.create(pos.x, pos.y, 'bullet');

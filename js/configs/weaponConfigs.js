@@ -4,7 +4,7 @@ gameConfig.weapon = {
         handle: {x: 10,y: 15},
         barrel: {x: [10,100],y: 10},
         friction: 20,
-        recoil: 400,
+        recoil: 250,
         range: 700,
         automatic: true,
         cooldownTime: 4,

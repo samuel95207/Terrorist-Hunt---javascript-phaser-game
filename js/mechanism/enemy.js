@@ -1,6 +1,7 @@
 Playground.prototype.createEnemy = function (x, y, texture, weapon) {
     let enemy = gameStatus.enemies.create(x, y, texture);
     let enemyConfig = gameConfig.enemy[texture];
+
     enemy.is_dead = false;
     enemy.body.maxVelocity.x = enemyConfig.maxSpeed;
     enemy.sight = enemyConfig.sight;
@@ -10,7 +11,6 @@ Playground.prototype.createEnemy = function (x, y, texture, weapon) {
     enemy.carryItem = Playground.prototype.createWeapon(enemy.body.x, enemy.body.y, weapon)
     enemy.carryItem.owner = enemy;
 
-    // console.log(enemy.carryItem)
 
     enemy.die = function () {
         enemy.is_dead = true;
@@ -40,6 +40,7 @@ Playground.prototype.createEnemy = function (x, y, texture, weapon) {
         this.body.velocity.x -= enemyConfig.acceleration;
         this.flipX = true;
     }
+
     enemy.fire = function () {
         if (this.is_dead) {
             return
@@ -56,9 +57,12 @@ Playground.prototype.createEnemy = function (x, y, texture, weapon) {
 
 Playground.prototype.enemyMovement = function () {
     gameStatus.enemies.children.each(function (enemy) {
+
+        //return if enemy is dead
         if (enemy.is_dead) {
             return;
         }
+
         //movement
         if ((!enemy.decisionCooldownCounter) || (enemy.decisionCooldownCounter <= 0)) {
             let rand = Math.floor(Math.random() * 100);
@@ -69,14 +73,10 @@ Playground.prototype.enemyMovement = function () {
             else if (rand < 80) {
                 if (enemy.flipX) {
                     enemy.moveLeft();
-                    // console.log("moveLeft")
                 } else {
                     enemy.moveRight();
-                    // console.log("moveRight")
                 }
             }
-            // console.log(enemy)
-
             enemy.decisionCooldownCounter = 10;
         } else {
             enemy.decisionCooldownCounter -= 1;
@@ -112,8 +112,6 @@ Playground.prototype.enemyMovement = function () {
         if(enemy.y > gameStatus.mapSize.height - 10){
             enemy.die();
         }
-
-
 
 
     }, this);

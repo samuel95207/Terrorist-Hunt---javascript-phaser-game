@@ -31,8 +31,7 @@ Playground.prototype.buildMap = function (json_file) {
 
     //generate player
     let player_coord = this.blockToCoord_LU(map.spawn_point.x, map.spawn_point.y);
-    gameStatus.player = this.createPlayer(player_coord.x, player_coord.y, 'codey');
-
+    gameStatus.player = this.createPlayer(player_coord.x, player_coord.y-20, 'codey');
 
     //generate weapons
     if (map.weapon_spawn_point) {
@@ -53,8 +52,7 @@ Playground.prototype.buildMap = function (json_file) {
     //next level
     gameStatus.next_level = map.next_level;
 
+    //background music
     gameStatus.music = this.sound.add(map["bgm"]);
     
-
-
 }
