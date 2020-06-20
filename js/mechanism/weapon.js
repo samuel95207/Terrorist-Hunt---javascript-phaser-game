@@ -35,6 +35,12 @@ Playground.prototype.createWeapon = function (x, y, texture) {
 
             if(weaponConfig.fireSound != undefined){
                 gameStatus.scene.sound.play(weaponConfig.fireSound);
+                if(!weaponConfig.automatic){
+                    weapon.angle += (weapon.flipX?30:-30);
+                    setTimeout(() => {
+                        weapon.angle -= (weapon.flipX?30:-30);
+                    },200)
+                }
             }
             
             let pos = { x: weapon.body.x + (weapon.flipX ? -weaponConfig.barrel.x[0] : weaponConfig.barrel.x[1]), y: weapon.body.y + weaponConfig.barrel.y };
@@ -98,6 +104,16 @@ Playground.prototype.createWeapon = function (x, y, texture) {
 
             if(weaponConfig.fireSound != undefined){
                 gameStatus.scene.sound.play(weaponConfig.fireSound);
+            }
+
+            if(weaponConfig.fireSound != undefined){
+                gameStatus.scene.sound.play(weaponConfig.fireSound);
+                if(!weaponConfig.automatic){
+                    weapon.angle += (weapon.flipX?30:-30);
+                    setTimeout(() => {
+                        weapon.angle -= (weapon.flipX?30:-30);
+                    },200)
+                }
             }
 
 
