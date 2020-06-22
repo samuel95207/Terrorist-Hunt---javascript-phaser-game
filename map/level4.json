@@ -1,6 +1,5 @@
 {
-    "name": "level1",
-    "next_level": "level2",
+    "name": "level4",
     "size": {"width":3200,"height":1000},
     "block_size": {"width":80,"height":25},
     "array": [
@@ -31,7 +30,7 @@
             [ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,213,213,213,213,213,213,213,213,213, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
     ],
     "spawn_point": {"x":6,"y":5},
-    "weapon_spawn_point":[{"x":16, "y":7, "type":"assaultRifle"},{"x":6, "y":17, "type":"grenade"},{"x":23, "y":14, "type":"grenade"},{"x":1, "y":13, "type":"grenade"},{"x":54, "y":20, "type":"sniper"},{"x":19, "y":17, "type":"revolver"},{"x":44, "y":14, "type":"grenade"},{"x":24, "y":17, "type":"shotgun"},{"x":26, "y":17, "type":"grenade"},{"x":63, "y":16, "type":"shotgun"},{"x":30, "y":17, "type":"grenade"}],
+    "weapon_spawn_point":[{"x":22, "y":7, "type":"pistol"},{"x":14, "y":7, "type":"grenade"},{"x":16, "y":7, "type":"smg"},{"x":18, "y":7, "type":"assaultRifle"},{"x":6, "y":17, "type":"grenade"},{"x":23, "y":14, "type":"grenade"},{"x":1, "y":13, "type":"grenade"},{"x":54, "y":20, "type":"sniper"},{"x":19, "y":17, "type":"revolver"},{"x":44, "y":14, "type":"grenade"},{"x":24, "y":17, "type":"shotgun"},{"x":26, "y":17, "type":"grenade"},{"x":63, "y":16, "type":"shotgun"},{"x":30, "y":17, "type":"grenade"},{"x":66, "y":16, "type":"pistol"}],
     "enemy_spawn_point":[{"x":13, "y":21, "type":"ordinaryEnemy","weapon":"assaultRifle"},{"x":28, "y":1, "type":"ordinaryEnemy","weapon":"assaultRifle"},{"x":29, "y":22, "type":"ordinaryEnemy","weapon":"shotgun"},{"x":28, "y":10, "type":"ordinaryEnemy","weapon":"assaultRifle"},{"x":38, "y":19, "type":"ordinaryEnemy","weapon":"assaultRifle"},{"x":40, "y":4, "type":"ordinaryEnemy","weapon":"shotgun"},{"x":52, "y":4, "type":"ordinaryEnemy","weapon":"shotgun"},{"x":46, "y":20, "type":"ordinaryEnemy","weapon":"assaultRifle"},{"x":71, "y":6, "type":"ordinaryEnemy","weapon":"assaultRifle"},{"x":77, "y":12, "type":"ordinaryEnemy","weapon":"assaultRifle"},{"x":6, "y":18, "type":"ordinaryEnemy","weapon":"assaultRifle"},{"x":14, "y":22, "type":"ordinaryEnemy","weapon":"assaultRifle"}],
     "bgm": "level1BGM"
 }
