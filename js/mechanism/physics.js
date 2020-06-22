@@ -35,6 +35,13 @@ Playground.prototype.weaponBlockCollider = function () {
         if (weapon.body.velocity.x < 50 && weapon.body.velocity.x > -50) {
             weapon.body.velocity.x = 0;
         }
+        
+        if(weapon.body.blocked.left){
+            weapon.body.velocity.x = 300;
+        }
+        if(weapon.body.blocked.right){
+            weapon.body.velocity.x = -300;
+        }
     });
 }
 
