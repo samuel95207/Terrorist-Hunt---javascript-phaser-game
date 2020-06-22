@@ -52,9 +52,6 @@ Playground.prototype.createEnemy = function (x, y, texture, weapon) {
 
 }
 
-
-
-
 Playground.prototype.enemyMovement = function () {
     gameStatus.enemies.children.each(function (enemy) {
 

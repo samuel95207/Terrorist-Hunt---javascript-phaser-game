@@ -13,7 +13,6 @@ class Load extends Phaser.Scene {
         this.loadEnemies();
         this.loadPlayer();
 
-
         let loadingBar = this.add.graphics({
             fillStyle: {
                 color: 0xffffff //white
@@ -79,14 +78,10 @@ class Load extends Phaser.Scene {
     }
 
     loadPlayer() {
-        //TODO: find animation spritesheet
         this.load.spritesheet('codey', 'https://s3.amazonaws.com/codecademy-content/courses/learn-phaser/Cave+Crisis/codey_sprite.png', { frameWidth: 72, frameHeight: 90 })
         this.load.audio('playerDieSound', 'sounds/player/playerDie.wav');
         this.load.audio('playerJumpSound', 'sounds/player/playerJump.wav');
         this.load.audio('missionFailed', 'sounds/player/missionFailed.wav');
-
-
-
     }
 
     loadBGM(){
@@ -94,8 +89,6 @@ class Load extends Phaser.Scene {
         this.load.audio('level1BGM', 'sounds/bgm/level1.wav');
         this.load.audio('level2BGM', 'sounds/bgm/level2.wav');
         this.load.audio('endBGM', 'sounds/bgm/end.wav');
-
-
     }
 
 }

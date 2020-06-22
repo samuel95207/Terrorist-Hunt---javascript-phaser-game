@@ -1,5 +1,4 @@
 gameConfig.weapon = {
-
     assaultRifle: {
         handle: {x: 10,y: 15},
         barrel: {x: [10,100],y: 10},
@@ -15,10 +14,9 @@ gameConfig.weapon = {
         randomCoef: 100,
         bullet: {
             bulletTexture: 'small',
-            speed: 3000,
+            speed: 2000,
             trail: true,
             trail_length: 200,
-            penetrable: false
         }
     },
 
@@ -39,8 +37,7 @@ gameConfig.weapon = {
             bulletTexture: 'small',
             speed: 3000,
             trail: true,
-            trail_length: 200,
-            penetrable: false
+            trail_length: 200,   
         }
     },
 
@@ -62,7 +59,6 @@ gameConfig.weapon = {
             speed: 3000,
             trail: true,
             trail_length: 200,
-            penetrable: false
         }
     },
 
@@ -84,7 +80,6 @@ gameConfig.weapon = {
             speed: 5000,
             trail: true,
             trail_length: 300,
-            penetrable: false
         }
     },
 
@@ -105,8 +100,7 @@ gameConfig.weapon = {
             bulletTexture: 'small',
             speed: 3000,
             trail: true,
-            trail_length: 150,
-            penetrable: false
+            trail_length: 150, 
         }
     },
 
@@ -114,7 +108,7 @@ gameConfig.weapon = {
         handle: {x: 30,y: 15},
         barrel: {x: [10,100],y: 10},
         friction: 20,
-        recoil: 700,
+        recoil: 2000,
         range: 200,
         automatic: false,
         cooldownTime: 80,
@@ -125,10 +119,9 @@ gameConfig.weapon = {
         randomCoef: 2000,
         bullet: {
             bulletTexture: 'small',
-            speed: 3000,
+            speed: 2000,
             trail: true,
             trail_length: 200,
-            penetrable: false
         }
     },
 
@@ -146,9 +139,6 @@ gameConfig.weapon = {
             speed: 3000,
             trail: true,
             trail_length: 200,
-            penetrable: false
         }
     }
-
-
 }

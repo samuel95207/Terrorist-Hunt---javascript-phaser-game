@@ -1,4 +1,5 @@
 Playground.prototype.buildMap = function (json_file) {
+    gameStatus.blocks = this.physics.add.staticGroup();
     let map;
     let xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");

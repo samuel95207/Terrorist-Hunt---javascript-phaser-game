@@ -19,7 +19,6 @@ class Menu extends Phaser.Scene {
                 color: 'aqua',
             });
 
-
         gameStatus.startText = this.add.text(gameConfig.width / 2 - 150, gameConfig.height * 0.8, 'Press Space to Start',
             {
                 fontFamily: 'Arial',
@@ -38,11 +37,7 @@ class Menu extends Phaser.Scene {
 
         gameStatus.textDir = true;
 
-
         gameStatus.cameras = this.cameras;
-
-
-
         
     }
 
@@ -68,8 +63,6 @@ class Menu extends Phaser.Scene {
         if (gameStatus.startText.scaleX > 1.2 || gameStatus.startText.scaleX < 1) {
             gameStatus.textDir = !gameStatus.textDir;
         }
-
-
 
         if (gameStatus.titleText.scaleX < 3.5) {
             gameStatus.titleText.scaleX += 0.05;

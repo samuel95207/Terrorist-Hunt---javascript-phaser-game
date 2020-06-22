@@ -3,6 +3,11 @@ class Playground extends Phaser.Scene {
     super('Playground');
   }
 
+  update(){
+
+  }
+
+
   create() {
     if (gameStatus.music != undefined) {
       gameStatus.music.stop();
@@ -10,14 +15,13 @@ class Playground extends Phaser.Scene {
 
     this.createBackground();
 
-    gameStatus.blocks = this.physics.add.staticGroup();
+    //sprite groups
     gameStatus.weapons = this.physics.add.group({ runChildUpdate: true });
     gameStatus.bullets = this.physics.add.group({ runChildUpdate: true });
     gameStatus.players = this.physics.add.group({ runChildUpdate: true });
     gameStatus.enemies = this.physics.add.group({ runChildUpdate: true });
 
     this.buildMap(`map/${gameStatus.map}.json`)
-
     this.createAnimations();
 
     //camera setting
@@ -27,18 +31,15 @@ class Playground extends Phaser.Scene {
     this.cameras.main.startFollow(gameStatus.player, true, 0.5, 0.5)
     gameStatus.player.setCollideWorldBounds(true);
 
+    //music
     gameStatus.music.play({ loop: true, volume: 0.5 });
 
-
+    //scene setting
     if (gameStatus.map == 'end') {
       this.endgameScene();
     } else {
       this.startScene();
     }
-
-
-
-
 
 
     //input setting
@@ -54,29 +55,17 @@ class Playground extends Phaser.Scene {
     }
 
 
-
-
-
     //collider setting
     this.playerWeaponOverlap();
-
-    //--player block friction
     this.playerBlocksCollider();
     this.weaponBlockCollider();
     this.enemyBlockCollider();
-
     this.bulletEnemyCollider();
     this.bulletBlockCollider();
     this.bulletPlayerCollider();
 
 
     gameStatus.winFlag = false;
-
-
-
-
-
-
   }
 
 
@@ -88,21 +77,19 @@ class Playground extends Phaser.Scene {
     if (gameStatus.map == 'end') {
       return;
     }
+
     //player movement
     this.playerControl();
     this.dropItemControl();
     this.fireWeaponControl();
 
+    //state check
     this.playerLivesCheck();
-
-
     this.stageClearCheck();
 
+    //hud
     this.livesDisplay();
     this.enemiesLeftDisplay();
-
-
-
   }
 
 
@@ -195,7 +182,6 @@ class Playground extends Phaser.Scene {
     gameStatus.enemiesLeftText.setScrollFactor(0);
   }
 
-
   playerLivesCheck() {
     if (gameStatus.player.lives < 0) {
       gameStatus.cameras.main.fadeOut(2000, 0, 0, 0);
@@ -210,38 +196,6 @@ class Playground extends Phaser.Scene {
       gameStatus.cameras.main.zoomTo(1, 500);
     }, 100);
   }
-
-  stageClearCheck() {
-    var win = true;
-    if (gameStatus.enemies.getLength() == 0) {
-      win = false;
-    }
-    gameStatus.enemies.children.each(function (enemy) {
-      if (!enemy.is_dead) {
-        win = false;
-      }
-    })
-    if (win && !gameStatus.winFlag) {
-      gameStatus.winFlag = true;
-      console.log('win');
-      gameStatus.cameras.main.zoomTo(2, 1000);
-
-      setTimeout(() => {
-        gameStatus.cameras.main.fadeOut(1000, 0, 0, 0);
-      }, 4000);
-
-      setTimeout(() => {
-        gameStatus.map = gameStatus.next_level;
-        if (!gameStatus.map) {
-          gameStatus.map = 'end';
-        }
-        gameStatus.music.stop();
-        this.scene.restart();
-      }, 5000);
-
-    }
-  }
-
 
   endgameScene() {
     gameStatus.cameras.main.setZoom(1);
@@ -307,6 +261,38 @@ class Playground extends Phaser.Scene {
     }, 15000);
   }
 
+  stageClearCheck() {
+    var win = true;
+    if (gameStatus.enemies.getLength() == 0) {
+      win = false;
+    }
+    gameStatus.enemies.children.each(function (enemy) {
+      if (!enemy.is_dead) {
+        win = false;
+      }
+    })
+    if (win && !gameStatus.winFlag) {
+      gameStatus.winFlag = true;
+      console.log('win');
+      gameStatus.cameras.main.zoomTo(2, 1000);
+
+      setTimeout(() => {
+        gameStatus.cameras.main.fadeOut(1000, 0, 0, 0);
+      }, 4000);
+
+      setTimeout(() => {
+        gameStatus.map = gameStatus.next_level;
+        if (!gameStatus.map) {
+          gameStatus.map = 'end';
+        }
+        gameStatus.music.stop();
+        this.scene.restart();
+      }, 5000);
+
+    }
+  }
+
 }
 
 
+8

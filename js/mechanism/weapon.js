@@ -12,8 +12,6 @@ Playground.prototype.createWeapon = function (x, y, texture) {
         let weaponConfig = gameConfig.weapon[weapon.texture.key];
 
 
-
-
         if (weaponConfig.fireType === "bullet") {
             if (weapon.cooldownCounter < weaponConfig.cooldownTime) {
                 return;
@@ -200,13 +198,10 @@ Playground.prototype.createWeapon = function (x, y, texture) {
         }
 
 
-
         weapon.cooldownCounter = 0;
         weapon.release = false;
         weapon.ammo -= 1;
     }
-
-
 
     return weapon;
 }

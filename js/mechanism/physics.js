@@ -11,7 +11,6 @@ Playground.prototype.playerWeaponOverlap = function () {
 
 Playground.prototype.playerBlocksCollider = function () {
     this.physics.add.collider(gameStatus.player, gameStatus.blocks, function (player, block) {
-        //TODO block friction
         if (player.body.velocity.x > 0) {
             player.body.velocity.x -= gameConfig.playerFriction;
         } else if (player.body.velocity.x < 0) {
@@ -59,6 +58,7 @@ Playground.prototype.enemyBlockCollider = function () {
     });
 }
 
+
 Playground.prototype.bulletBlockCollider = function () {
     this.physics.add.collider(gameStatus.bullets, gameStatus.blocks, function (bullet, block) {
         if (bullet.trail) {
@@ -70,7 +70,6 @@ Playground.prototype.bulletBlockCollider = function () {
         // console.log("bullet collide")
     });
 }
-
 
 
 Playground.prototype.bulletEnemyCollider = function () {
